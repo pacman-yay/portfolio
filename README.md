@@ -41,7 +41,7 @@ To run this project locally:
    ```
 
 ## 📝 Things Yet to Complete (TODO)
-- [ ] **Upload Actual Resume**: Drop the finalized `resume.pdf` into the `public/` directory so the "EXTRACT DOSSIER" button works correctly.
+- [x] **Upload Actual Resume**: Drop the finalized `resume.pdf` into the `public/` directory so the "EXTRACT DOSSIER" button works correctly.
 - [ ] **Add More Project Reports**: Upload additional PDF reports for the other featured missions (e.g., Hive Security, Python Firewall).
 - [ ] **Configure Custom Domain**: Deploy the repository to a hosting provider (like Vercel or GitHub Pages) and link a custom domain (e.g., `akshaya.dev`).
 - [ ] **Test Contact Form**: Verify that messages sent through the Formspree endpoint correctly arrive in the inbox.
