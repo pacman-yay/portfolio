@@ -766,8 +766,6 @@ const App = () => {
 
   return (
     <>
-      <div className="noise" aria-hidden="true"></div>
-      
       {/* HEADER */}
       <header>
         <a href="#top" className="island island-logo hud-label text-muted" style={{ gap: '8px', textDecoration: 'none' }}>
