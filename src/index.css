@@ -524,9 +524,7 @@ header {
   bottom: 130%;
 }
 
-.terminal-container {
-  display: none;
-}
+
 
 *::-webkit-scrollbar {
   display: none;
