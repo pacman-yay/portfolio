@@ -127,6 +127,25 @@ const missionsData = [
       techStack: 'Lenovo Hardware, Tailscale, SSH, React (v19), Vite (v8), Vanilla CSS',
       link: '#'
     }
+  },
+  {
+    id: 'recon-it',
+    meta: 'BASH / RECON',
+    year: '2026',
+    title: 'RECON-IT',
+    shortDesc: 'A unified bash tool combining powerful reconnaissance utilities like whois, subfinder, dnsrecon, dnsdumpster, and httpx into a single automated workflow.',
+    buttonText: 'VIEW SCRIPT',
+    details: {
+      findings: [
+        'Automated sub-domain enumeration using Subfinder.',
+        'Integrated comprehensive DNS enumeration with dnsrecon and DNSDumpster.',
+        'Fast HTTP probing via httpx to rapidly identify live targets.',
+        'Streamlined WHOIS lookup automation to instantly pull domain registration records.',
+        'Consolidated multiple CLI tool outputs into a single, cohesive analysis workflow.'
+      ],
+      techStack: 'Bash Scripting, whois, subfinder, dnsrecon, dnsdumpster, httpx',
+      link: '#'
+    }
   }
 ];
 
@@ -502,7 +521,7 @@ const InteractiveTerminal = () => {
         newHistory.push({ text: 'akshaya_vardhan - Undergraduate Cyber Security Researcher & Full-Stack Engineer', type: 'output' });
         break;
       case 'ls':
-        newHistory.push({ text: 'MISSIONS: case-mgmt firewall hive moosik zepto-osint pngtree-vapt home-lab', type: 'output' });
+        newHistory.push({ text: 'MISSIONS: case-mgmt firewall hive moosik zepto-osint pngtree-vapt home-lab recon-it', type: 'output' });
         break;
       case 'clear':
         setHistory([]);
