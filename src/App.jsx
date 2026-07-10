@@ -315,7 +315,7 @@ const ThreatRating = () => {
       
       {/* PortSwigger */}
       <div style={{ marginBottom: '24px', paddingBottom: '24px', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '12px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '8px', marginBottom: '12px' }}>
           <div>
             <span className="hud-label" style={{ color: '#ff6600', display: 'block', marginBottom: '4px' }}>PORTSWIGGER ACADEMY</span>
             <span style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)' }}>akshayavardhan20061418...</span>
@@ -338,8 +338,8 @@ const ThreatRating = () => {
       </div>
 
       {/* HackTheBox */}
-      <div>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '12px' }}>
+      <div style={{ paddingBottom: '12px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '8px', marginBottom: '12px' }}>
           <div>
             <span className="hud-label" style={{ color: '#9fef00', display: 'block', marginBottom: '4px' }}>HACKTHEBOX</span>
             <span style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)' }}>@kira1402</span>
@@ -434,7 +434,7 @@ const SystemStatus = () => {
         <span className="sysop-text" style={{ opacity: 0.5 }}>|</span>
         <span className="sysop-text" style={{ color: 'var(--accent)' }}>{time}</span>
         
-        <span className="sysop-mobile-only" style={{ display: 'none', fontSize: '18px', letterSpacing: '2px', marginLeft: '2px', transform: 'translateY(-2px)' }}>•••</span>
+        <span className="sysop-mobile-only" style={{ fontSize: '18px', letterSpacing: '2px', marginLeft: '2px', transform: 'translateY(-2px)' }}>•••</span>
       </button>
 
       {isOpen && (
@@ -772,7 +772,7 @@ const App = () => {
       <header>
         <a href="#top" className="island island-logo hud-label text-muted" style={{ gap: '8px', textDecoration: 'none' }}>
           <span style={{ fontSize: '18px', fontWeight: 900 }}>AKSHAY</span>
-          <span>PORTFOLIO</span>
+          <span className="hide-mobile">PORTFOLIO</span>
         </a>
         
         <nav className="island nav-links">
@@ -783,7 +783,7 @@ const App = () => {
         </nav>
         
         <div className="header-right" style={{ position: 'absolute', right: '24px', display: 'flex', gap: '12px', alignItems: 'center' }}>
-          <a href="/resume.pdf" download="resume.pdf" className="island hud-label" style={{ color: 'var(--accent)', borderColor: 'var(--accent)', textDecoration: 'none', transition: 'all 0.2s', cursor: 'pointer' }}>
+          <a href="/resume.pdf" download="resume.pdf" className="island hud-label hide-mobile" style={{ color: 'var(--accent)', borderColor: 'var(--accent)', textDecoration: 'none', transition: 'all 0.2s', cursor: 'pointer' }}>
             [ EXTRACT DOSSIER ]
           </a>
           <SystemStatus />
@@ -802,7 +802,7 @@ const App = () => {
             <h1 className="hero-name">
               <span className="hero-name-line"><span className="hero-first-name glitch" data-text="AKSHAYA">AKSHAYA</span></span>
               <span className="hero-name-line" style={{ display: 'flex', alignItems: 'center', gap: '32px', flexWrap: 'wrap' }}>
-                <span className="hero-last-name glitch" data-text="VARDHAN S.">VARDHAN S.</span>
+                <span><span className="hero-last-name glitch" data-text="VARDHAN">VARDHAN</span>&nbsp;<span className="hero-last-name glitch" data-text="S.">S.</span></span>
                 <CyberDecal size="hero" className="glitch" />
               </span>
             </h1>

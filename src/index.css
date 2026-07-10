@@ -144,6 +144,37 @@ header {
   cursor: pointer;
   clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
 }
+
+/* Mobile Utilities */
+.sysop-mobile-only {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .hide-mobile {
+    display: none !important;
+  }
+  
+  .sysop-desktop-only, .sysop-text {
+    display: none !important;
+  }
+  
+  .sysop-mobile-only {
+    display: inline-block !important;
+  }
+  
+  header {
+    padding: 0 12px;
+  }
+  
+  .island-logo {
+    left: 12px;
+  }
+  
+  .header-right {
+    right: 12px !important;
+  }
+}
 .btn-primary:hover {
   filter: brightness(1.1);
 }
