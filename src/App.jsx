@@ -34,7 +34,7 @@ const missionsData = [
         'Real-time traffic logging and analysis.'
       ],
       techStack: 'Python, Socket Programming',
-      link: '#'
+      link: 'https://github.com/pacman-yay/project.git'
     }
   },
   {
@@ -50,7 +50,7 @@ const missionsData = [
         'Deep packet analysis.'
       ],
       techStack: 'Python, Scapy, Matplotlib',
-      link: '#'
+      link: 'https://github.com/pacman-yay/HIVE.git'
     }
   },
   {
@@ -125,7 +125,7 @@ const missionsData = [
         'Optimized Mobile UX featuring solid dark floating islands and custom webkit scrollbars.'
       ],
       techStack: 'Lenovo Hardware, Tailscale, SSH, React (v19), Vite (v8), Vanilla CSS',
-      link: '#'
+      link: 'https://github.com/pacman-yay/home-lab.git'
     }
   },
   {
@@ -144,7 +144,7 @@ const missionsData = [
         'Consolidated multiple CLI tool outputs into a single, cohesive analysis workflow.'
       ],
       techStack: 'Bash Scripting, whois, subfinder, dnsrecon, dnsdumpster, httpx',
-      link: '#'
+      link: 'https://github.com/pacman-yay/Recon-it.git'
     }
   }
 ];
@@ -205,9 +205,15 @@ const MissionModal = ({ mission, onClose }) => {
         <p>{mission.details.techStack}</p>
         
         <div style={{ marginTop: '40px' }}>
-          <a href={mission.details.link} target="_blank" rel="noopener noreferrer" className="modal-pill-btn">
-            [ {btnText} ] <ArrowUpRight size={14} />
-          </a>
+          {mission.id === 'case-mgmt' ? (
+            <div className="modal-pill-btn confidential-btn" style={{ display: 'inline-flex' }}>
+              [ RESTRICTED ACCESS ] <ArrowUpRight size={14} />
+            </div>
+          ) : (
+            <a href={mission.details.link} target="_blank" rel="noopener noreferrer" className="modal-pill-btn">
+              [ {btnText} ] <ArrowUpRight size={14} />
+            </a>
+          )}
         </div>
       </div>
     </div>
