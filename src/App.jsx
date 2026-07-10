@@ -636,16 +636,23 @@ const InteractiveTerminal = () => {
           </div>
         ))}
         
-        <div style={{ display: 'flex', alignItems: 'center', marginTop: '8px' }}>
+        <form 
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleCommand(input);
+          }}
+          style={{ display: 'flex', alignItems: 'center', marginTop: '8px' }}
+        >
           <span style={{ color: 'var(--accent)', marginRight: '8px' }}>$</span>
           <input
             ref={inputRef}
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') handleCommand(input);
-            }}
+            autoComplete="off"
+            autoCorrect="off"
+            autoCapitalize="off"
+            spellCheck="false"
             style={{
               background: 'transparent',
               border: 'none',
@@ -657,7 +664,7 @@ const InteractiveTerminal = () => {
               textShadow: '0 0 8px var(--accent)'
             }}
           />
-        </div>
+        </form>
       </div>
     </div>
   );
