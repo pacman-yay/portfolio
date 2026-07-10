@@ -298,6 +298,66 @@ const HoverScrambleText = ({ text }) => {
   );
 };
 
+const ThreatRating = () => {
+  return (
+    <div className="card reveal-up is-visible" style={{ background: 'rgba(20,20,20,0.95)', border: '1px solid var(--accent)' }}>
+      <div className="card-meta">
+        <span className="text-accent blink">LIVE FEED</span>
+        <span>THREAT RATING</span>
+      </div>
+      <h2 className="card-title" style={{ fontSize: '20px', marginBottom: '24px' }}>TRAINING & CLEARANCE</h2>
+      
+      {/* PortSwigger */}
+      <div style={{ marginBottom: '24px', paddingBottom: '24px', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '12px' }}>
+          <div>
+            <span className="hud-label" style={{ color: '#ff6600', display: 'block', marginBottom: '4px' }}>PORTSWIGGER ACADEMY</span>
+            <span style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)' }}>akshayavardhan20061418...</span>
+          </div>
+          <div style={{ textAlign: 'right' }}>
+            <span className="hud-label" style={{ color: '#fff', fontSize: '18px' }}>APPRENTICE</span>
+          </div>
+        </div>
+        
+        <div style={{ display: 'flex', gap: '8px' }}>
+          <div style={{ flex: 1, background: 'rgba(255,255,255,0.05)', padding: '8px', borderRadius: '4px' }}>
+            <div className="hud-label" style={{ fontSize: '10px', color: 'rgba(255,255,255,0.5)' }}>LABS SOLVED</div>
+            <div style={{ fontSize: '16px', fontFamily: 'var(--font-mono)' }}>50+</div>
+          </div>
+          <div style={{ flex: 1, background: 'rgba(255,255,255,0.05)', padding: '8px', borderRadius: '4px' }}>
+            <div className="hud-label" style={{ fontSize: '10px', color: 'rgba(255,255,255,0.5)' }}>VULN CLASSES</div>
+            <div style={{ fontSize: '16px', fontFamily: 'var(--font-mono)' }}>12</div>
+          </div>
+        </div>
+      </div>
+
+      {/* HackTheBox */}
+      <div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '12px' }}>
+          <div>
+            <span className="hud-label" style={{ color: '#9fef00', display: 'block', marginBottom: '4px' }}>HACKTHEBOX</span>
+            <span style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)' }}>@kira1402</span>
+          </div>
+          <div style={{ textAlign: 'right' }}>
+            <span className="hud-label" style={{ color: '#fff', fontSize: '18px' }}>NOOB</span>
+          </div>
+        </div>
+        
+        <div style={{ display: 'flex', gap: '8px' }}>
+          <div style={{ flex: 1, background: 'rgba(255,255,255,0.05)', padding: '8px', borderRadius: '4px' }}>
+            <div className="hud-label" style={{ fontSize: '10px', color: 'rgba(255,255,255,0.5)' }}>MACHINES OWNED</div>
+            <div style={{ fontSize: '16px', fontFamily: 'var(--font-mono)' }}>05</div>
+          </div>
+          <div style={{ flex: 1, background: 'rgba(255,255,255,0.05)', padding: '8px', borderRadius: '4px' }}>
+            <div className="hud-label" style={{ fontSize: '10px', color: 'rgba(255,255,255,0.5)' }}>RESPECT</div>
+            <div style={{ fontSize: '16px', fontFamily: 'var(--font-mono)' }}>0</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const ProfileSection = () => {
   return (
     <section id="skills" className="section-container" style={{ paddingTop: '40px' }}>
@@ -306,24 +366,29 @@ const ProfileSection = () => {
         <div className="dash"></div>
       </div>
       
-      {/* DOSSIER */}
-      <div className="card reveal-up is-visible" style={{ background: 'rgba(20,20,20,0.95)' }}>
-        <div className="card-meta">
-          <span>CLEARANCE: TOP SECRET</span>
-          <span className="text-accent">ACTIVE</span>
+      <div className="grid-layout">
+        {/* DOSSIER */}
+        <div className="card reveal-up is-visible" style={{ background: 'rgba(20,20,20,0.95)' }}>
+          <div className="card-meta">
+            <span>CLEARANCE: TOP SECRET</span>
+            <span className="text-accent">ACTIVE</span>
+          </div>
+          <h2 className="card-title" style={{ fontSize: '24px', marginBottom: '24px' }}>OPERATIVE PROFILE</h2>
+          <p className="card-desc" style={{ marginBottom: '16px' }}>
+            Undergraduate Cyber Security researcher and Full-Stack Engineer based in Chennai, India. Specializing in bridging the gap between offensive security testing and secure software development.
+          </p>
+          <p className="card-desc" style={{ marginBottom: '16px' }}>
+            Passionate about building things from scratch—whether it's writing custom Python firewalls, developing high-performance Android streaming apps with Kotlin, or tearing down infrastructure in Homelab environments over Tailscale tunnels.
+          </p>
+          <ul className="card-bullets" style={{ marginTop: '32px' }}>
+            <li>B.E Cyber Security Undergraduate</li>
+            <li>Full-Stack Development (React, Python, Kotlin)</li>
+            <li>Vulnerability Assessment & Penetration Testing</li>
+          </ul>
         </div>
-        <h2 className="card-title" style={{ fontSize: '24px', marginBottom: '24px' }}>OPERATIVE PROFILE</h2>
-        <p className="card-desc" style={{ marginBottom: '16px' }}>
-          Undergraduate Cyber Security researcher and Full-Stack Engineer based in Chennai, India. Specializing in bridging the gap between offensive security testing and secure software development.
-        </p>
-        <p className="card-desc" style={{ marginBottom: '16px' }}>
-          Passionate about building things from scratch—whether it's writing custom Python firewalls, developing high-performance Android streaming apps with Kotlin, or tearing down infrastructure in Homelab environments over Tailscale tunnels.
-        </p>
-        <ul className="card-bullets" style={{ marginTop: '32px' }}>
-          <li>B.E Cyber Security Undergraduate</li>
-          <li>Full-Stack Development (React, Python, Kotlin)</li>
-          <li>Vulnerability Assessment & Penetration Testing</li>
-        </ul>
+        
+        {/* THREAT RATING */}
+        <ThreatRating />
       </div>
     </section>
   );
