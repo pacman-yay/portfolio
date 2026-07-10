@@ -776,9 +776,9 @@ const App = () => {
         </a>
         
         <nav className="island nav-links">
+          <a href="#skills" className="nav-link hud-label"><HoverScrambleText text="SKILLS" /></a>
           <a href="#work" className="nav-link hud-label"><HoverScrambleText text="MISSIONS" /></a>
           <a href="#experience" className="nav-link hud-label"><HoverScrambleText text="EXPERIENCE" /></a>
-          <a href="#skills" className="nav-link hud-label"><HoverScrambleText text="SKILLS" /></a>
           <a href="#contact" className="nav-link hud-label"><HoverScrambleText text="CONTACT" /></a>
         </nav>
         
