@@ -3,6 +3,9 @@
   --muted: #ece9e4;
   --muted-rgb: 236, 233, 228;
   --accent: #3b82f6;
+  --accent-blue: #3b82f6;
+  --accent-red: #ff3366;
+  --accent-purple: #a855f7;
   --ease-soft: cubic-bezier(0.16, 1, 0.3, 1);
   --dur-hover: 0.3s;
   --font-mono: 'JetBrains Mono', monospace;
@@ -277,7 +280,7 @@ header {
   100% { transform: translate(0) }
 }
 
-/* Cyber Decal Graphic */
+/* Cyber Decal Graphic (Dual Red & Blue Decals) */
 .cyber-decal {
   display: flex;
   gap: 8px;
@@ -285,6 +288,17 @@ header {
 .cyber-bar {
   background-color: var(--accent);
   transform: skewX(-25deg);
+  transition: all 0.3s ease;
+}
+.cyber-decal .cyber-bar:nth-child(1),
+.cyber-decal .cyber-bar:nth-child(2) {
+  background-color: var(--accent-red);
+  box-shadow: 0 0 10px rgba(255, 51, 102, 0.45);
+}
+.cyber-decal .cyber-bar:nth-child(3),
+.cyber-decal .cyber-bar:nth-child(4) {
+  background-color: var(--accent-blue);
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.45);
 }
 .cyber-decal.size-small .cyber-bar {
   width: 12px;
@@ -901,4 +915,138 @@ header {
     font-size: 10px;
   }
 }
+
+/* ==========================================================================
+   RED & BLUE THEME INTEGRATION (OFFENSIVE VS DEFENSIVE)
+   ========================================================================== */
+
+/* Red Team Theme */
+.arsenal-card.theme-red,
+.card.theme-red {
+  border-color: rgba(255, 51, 102, 0.22);
+}
+.arsenal-card.theme-red:hover,
+.card.theme-red:hover {
+  border-color: var(--accent-red) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.7), 0 0 25px rgba(255, 51, 102, 0.25) !important;
+}
+.arsenal-card.theme-red .arsenal-badge-status {
+  color: var(--accent-red);
+}
+.arsenal-card.theme-red .arsenal-badge-dot {
+  background: var(--accent-red);
+  box-shadow: 0 0 8px var(--accent-red);
+}
+.arsenal-card.theme-red .arsenal-item:hover {
+  background: rgba(255, 51, 102, 0.08);
+  border-color: rgba(255, 51, 102, 0.4);
+}
+.arsenal-card.theme-red .arsenal-item-arrow {
+  color: var(--accent-red);
+}
+.arsenal-card.theme-red .arsenal-item:hover .arsenal-item-role {
+  color: var(--accent-red);
+}
+.card.theme-red .card-meta span:first-child {
+  color: var(--accent-red);
+  font-weight: 600;
+}
+.card.theme-red .modal-pill-btn:hover {
+  border-color: var(--accent-red);
+  color: var(--accent-red);
+  box-shadow: 0 0 14px rgba(255, 51, 102, 0.35);
+}
+
+/* Blue Team Theme */
+.arsenal-card.theme-blue,
+.card.theme-blue {
+  border-color: rgba(59, 130, 246, 0.22);
+}
+.arsenal-card.theme-blue:hover,
+.card.theme-blue:hover {
+  border-color: var(--accent-blue) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.7), 0 0 25px rgba(59, 130, 246, 0.25) !important;
+}
+.arsenal-card.theme-blue .arsenal-badge-status {
+  color: var(--accent-blue);
+}
+.arsenal-card.theme-blue .arsenal-badge-dot {
+  background: var(--accent-blue);
+  box-shadow: 0 0 8px var(--accent-blue);
+}
+.arsenal-card.theme-blue .arsenal-item:hover {
+  background: rgba(59, 130, 246, 0.08);
+  border-color: rgba(59, 130, 246, 0.4);
+}
+.arsenal-card.theme-blue .arsenal-item-arrow {
+  color: var(--accent-blue);
+}
+.arsenal-card.theme-blue .arsenal-item:hover .arsenal-item-role {
+  color: var(--accent-blue);
+}
+.card.theme-blue .card-meta span:first-child {
+  color: var(--accent-blue);
+  font-weight: 600;
+}
+.card.theme-blue .modal-pill-btn:hover {
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+  box-shadow: 0 0 14px rgba(59, 130, 246, 0.35);
+}
+
+/* Purple / Fusion Theme */
+.arsenal-card.theme-purple,
+.card.theme-purple {
+  border-color: rgba(168, 85, 247, 0.22);
+}
+.arsenal-card.theme-purple:hover,
+.card.theme-purple:hover {
+  border-color: var(--accent-purple) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.7), 0 0 25px rgba(168, 85, 247, 0.25) !important;
+}
+.arsenal-card.theme-purple .arsenal-badge-status {
+  color: var(--accent-purple);
+}
+.arsenal-card.theme-purple .arsenal-badge-dot {
+  background: var(--accent-purple);
+  box-shadow: 0 0 8px var(--accent-purple);
+}
+.arsenal-card.theme-purple .arsenal-item:hover {
+  background: rgba(168, 85, 247, 0.08);
+  border-color: rgba(168, 85, 247, 0.4);
+}
+.arsenal-card.theme-purple .arsenal-item-arrow {
+  color: var(--accent-purple);
+}
+.arsenal-card.theme-purple .arsenal-item:hover .arsenal-item-role {
+  color: var(--accent-purple);
+}
+.card.theme-purple .card-meta span:first-child {
+  color: var(--accent-purple);
+  font-weight: 600;
+}
+.card.theme-purple .modal-pill-btn:hover {
+  border-color: var(--accent-purple);
+  color: var(--accent-purple);
+  box-shadow: 0 0 14px rgba(168, 85, 247, 0.35);
+}
+
+/* Utilities */
+.text-accent-red { color: var(--accent-red) !important; }
+.text-accent-blue { color: var(--accent-blue) !important; }
+.text-accent-purple { color: var(--accent-purple) !important; }
+
+.btn-dual {
+  background: linear-gradient(135deg, var(--accent-red), var(--accent-blue)) !important;
+  color: #fff !important;
+  border: none !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  font-weight: 600;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+.btn-dual:hover {
+  box-shadow: 0 0 20px rgba(255, 51, 102, 0.4), 0 0 25px rgba(59, 130, 246, 0.4) !important;
+  transform: translateY(-2px);
+}
+
 

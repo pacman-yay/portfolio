@@ -12,7 +12,8 @@ const accents = ['#3b82f6'];
 const missionsData = [
   {
     id: 'case-mgmt',
-    meta: 'REACT.JS / PYTHON',
+    theme: 'theme-blue',
+    meta: 'BLUE TEAM // RBAC & MFA',
     year: '2026',
     title: 'CASE MANAGEMENT DASHBOARD',
     shortDesc: 'A real-time crime case management dashboard with RBAC and MFA.',
@@ -28,7 +29,8 @@ const missionsData = [
   },
   {
     id: 'firewall',
-    meta: 'PYTHON / NETWORKING',
+    theme: 'theme-blue',
+    meta: 'BLUE TEAM // PYTHON FIREWALL',
     year: '2025',
     title: 'PYTHON-BASED FIREWALL',
     shortDesc: 'A custom firewall using Python with rule-based IP/port filtering.',
@@ -44,7 +46,8 @@ const missionsData = [
   },
   {
     id: 'hive',
-    meta: 'PYTHON / MONITORING',
+    theme: 'theme-blue',
+    meta: 'BLUE TEAM // DDOS MONITORING',
     year: '2025',
     title: 'HIVE SECURITY DASHBOARD',
     shortDesc: 'Python dashboard with real-time traffic monitoring & DDoS detection.',
@@ -60,7 +63,8 @@ const missionsData = [
   },
   {
     id: 'moosik',
-    meta: 'ANDROID / KOTLIN',
+    theme: 'theme-blue',
+    meta: 'SYSTEMS // ANDROID & KOTLIN',
     year: '2026',
     title: 'MOOSIK STREAMING APP',
     shortDesc: 'High-performance music streaming & local player for Android.',
@@ -79,7 +83,8 @@ const missionsData = [
   },
   {
     id: 'zepto-osint',
-    meta: 'OSINT / PRIVACY',
+    theme: 'theme-red',
+    meta: 'RED TEAM // OSINT & PRIVACY',
     year: '2026',
     title: 'ZEPTO OSINT ASSESSMENT',
     shortDesc: 'Open-Source Intelligence investigation mapping digital footprint and regulatory risks.',
@@ -97,7 +102,8 @@ const missionsData = [
   },
   {
     id: 'apkphage',
-    meta: 'DEVSECOPS / MALWARE ANALYSIS',
+    theme: 'theme-purple',
+    meta: 'PURPLE TEAM // DEVSECOPS & MALWARE',
     year: '2026',
     title: 'APKPHAGE MALWARE SANDBOX',
     shortDesc: 'Containerized Android malware detonation sandbox with a secure dynamic analysis pipeline and DevSecOps CI/CD.',
@@ -114,7 +120,8 @@ const missionsData = [
   },
   {
     id: 'vapt-assessment',
-    meta: 'PENETRATION TESTING',
+    theme: 'theme-red',
+    meta: 'RED TEAM // PENETRATION TESTING',
     year: '2026',
     title: 'INDEPENDENT VAPT ASSESSMENT',
     shortDesc: 'Black-box VAPT engagement on a high-traffic public web platform following OWASP WSTG methodology.',
@@ -132,7 +139,8 @@ const missionsData = [
   },
   {
     id: 'home-lab',
-    meta: 'HOMELAB / REACT',
+    theme: 'theme-blue',
+    meta: 'BLUE TEAM // HOMELAB & TAILSCALE',
     year: '2026',
     title: 'HOME LAB SETUP',
     shortDesc: 'A home lab server repurposed from an old Lenovo laptop, managed via a custom React dashboard and connected securely via Tailscale and SSH.',
@@ -152,7 +160,8 @@ const missionsData = [
   },
   {
     id: 'recon-it',
-    meta: 'BASH / RECON',
+    theme: 'theme-red',
+    meta: 'RED TEAM // BASH RECON',
     year: '2026',
     title: 'RECON-IT',
     shortDesc: 'A unified bash tool combining powerful reconnaissance utilities like whois, subfinder, dnsrecon, dnsdumpster, and httpx into a single automated workflow.',
@@ -523,9 +532,15 @@ const ProfileSection = () => {
             Experienced in independently discovering high-severity vulnerabilities (IDOR, CSRF) on live production targets, and building multi-stage security pipelines with hard fail-on-finding gates to secure the software delivery lifecycle.
           </p>
           <ul className="card-bullets" style={{ marginTop: '32px' }}>
-            <li>DevSecOps & CI/CD Pipelines</li>
-            <li>Offensive Security (VAPT)</li>
-            <li>Full-Stack Development (React.js, Python, Kotlin)</li>
+            <li>
+              <span style={{ color: 'var(--accent-red)', fontWeight: 600 }}>Offensive Security (Red Team)</span>: Vulnerability Assessment & Pentesting (VAPT), OWASP Top 10, Web & API Exploitation
+            </li>
+            <li>
+              <span style={{ color: 'var(--accent-blue)', fontWeight: 600 }}>Defensive & DevSecOps (Blue Team)</span>: Automated Security CI/CD, Container Sandboxing, Vulnerability Scanning
+            </li>
+            <li>
+              <span style={{ color: 'var(--accent-purple)', fontWeight: 600 }}>Full-Stack Systems Engineering</span>: React.js, Python Sockets, Kotlin & Native Android
+            </li>
           </ul>
         </div>
 
@@ -551,6 +566,7 @@ const SkillsStrip = () => {
   const tacticalArsenal = [
     {
       sector: 'SECTOR 01 // RED TEAM',
+      theme: 'theme-red',
       status: 'OPERATIONAL',
       title: 'OFFENSIVE OPS & VAPT',
       desc: 'Web & API penetration testing, binary reverse engineering, vulnerability research, and active target reconnaissance.',
@@ -564,9 +580,10 @@ const SkillsStrip = () => {
       ]
     },
     {
-      sector: 'SECTOR 02 // DEFENSE',
+      sector: 'SECTOR 02 // BLUE TEAM',
+      theme: 'theme-blue',
       status: 'HARDENED',
-      title: 'DEVSECOPS & INFRA',
+      title: 'DEVSECOPS & DEFENSE',
       desc: 'Container sandboxing, automated pipeline security gates, vulnerability scanning, and zero-trust mesh networking.',
       skills: [
         { name: 'Docker', role: 'Isolated Sandboxing' },
@@ -579,6 +596,7 @@ const SkillsStrip = () => {
     },
     {
       sector: 'SECTOR 03 // SYSTEMS',
+      theme: 'theme-purple',
       status: 'PRODUCTION',
       title: 'ENGINEERING & CODE',
       desc: 'Full-stack mission dashboards, low-level network programming, and high-performance native Android applications.',
@@ -596,10 +614,10 @@ const SkillsStrip = () => {
   return (
     <div className="arsenal-grid">
       {tacticalArsenal.map((category, idx) => (
-        <div key={category.sector} className={`arsenal-card reveal-up ${idx > 0 ? `delay-${idx * 100}` : ''}`}>
+        <div key={category.sector} className={`arsenal-card ${category.theme} reveal-up ${idx > 0 ? `delay-${idx * 100}` : ''}`}>
           <div className="card-meta">
             <span>{category.sector}</span>
-            <span className="text-accent arsenal-badge-status">
+            <span className="arsenal-badge-status">
               <span className="blink arsenal-badge-dot"></span>
               {category.status}
             </span>
@@ -687,7 +705,7 @@ const ContactForm = () => {
         style={{ padding: '12px 16px', background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(255,255,255,0.1)', color: '#fff', outline: 'none', fontFamily: 'var(--font-mono)', resize: 'vertical' }}
       />
       <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-        <button type="submit" className="btn-primary hud-label" style={{ border: 'none', cursor: 'pointer', padding: '12px 24px', letterSpacing: '2px', background: 'var(--accent)', color: '#000' }}>
+        <button type="submit" className="btn-primary hud-label btn-dual" style={{ border: 'none', cursor: 'pointer', padding: '12px 24px', letterSpacing: '2px' }}>
           [ SEND PAYLOAD ]
         </button>
         {status && <span className="hud-label" style={{ color: status.includes('SUCCESS') ? '#00ffaa' : status.includes('TRANSMITTING') ? 'var(--accent)' : '#ff0055' }}>{status}</span>}
@@ -760,7 +778,13 @@ const App = () => {
       <section id="top" className="hero">
         <div style={{ paddingTop: '20px', zIndex: 2 }}>
           <p className="hero-subtitle reveal-up is-visible">CYBER SECURITY UNDERGRADUATE</p>
-          <p className="hud-label text-muted-75 reveal-up delay-100 is-visible">VAPT · DEVSECOPS · OFFENSIVE SECURITY · AUTOMATION</p>
+          <p className="hud-label text-muted-75 reveal-up delay-100 is-visible" style={{ letterSpacing: '2px' }}>
+            <span style={{ color: 'var(--accent-red)', fontWeight: 600 }}>RED TEAM (VAPT)</span>
+            <span style={{ opacity: 0.4, margin: '0 8px' }}>·</span>
+            <span style={{ color: 'var(--accent-blue)', fontWeight: 600 }}>BLUE TEAM (DEVSECOPS)</span>
+            <span style={{ opacity: 0.4, margin: '0 8px' }}>·</span>
+            <span>SYSTEMS ENGINEERING</span>
+          </p>
         </div>
 
         <div className="hero-content">
@@ -773,10 +797,17 @@ const App = () => {
               </span>
             </h1>
             <div className="hero-tags reveal-up delay-300 is-visible">
+              <span className="hud-label hero-tag" style={{ borderColor: 'rgba(255, 51, 102, 0.4)' }}>
+                <span className="dot" style={{ background: 'var(--accent-red)', boxShadow: '0 0 8px var(--accent-red)' }}></span>
+                <span style={{ color: 'var(--accent-red)' }}>OFFENSIVE (RED)</span>
+              </span>
+              <span className="hud-label hero-tag" style={{ borderColor: 'rgba(59, 130, 246, 0.4)' }}>
+                <span className="dot" style={{ background: 'var(--accent-blue)', boxShadow: '0 0 8px var(--accent-blue)' }}></span>
+                <span style={{ color: 'var(--accent-blue)' }}>DEFENSIVE (BLUE)</span>
+              </span>
               <span className="hud-label hero-tag"><span className="dot"></span><ScrambleText text="CHENNAI, INDIA" delay={500} /></span>
               <span className="hud-label hero-tag"><span className="dot"></span><ScrambleText text="B.E CYBER SECURITY" delay={900} /></span>
               <span className="hud-label hero-tag"><span className="dot"></span><ScrambleText text="AVAILABLE FOR HIRE" delay={1300} /></span>
-              <span className="hud-label hero-tag"><span className="dot"></span><ScrambleText text="13.0827° N, 80.2707° E" delay={1700} /></span>
             </div>
           </div>
         </div>
@@ -805,7 +836,7 @@ const App = () => {
 
         <div className="grid-layout">
           {missionsData.map((mission, idx) => (
-            <div key={mission.id} className={`card reveal-up ${idx > 0 ? 'delay-' + (idx * 100) : ''}`}>
+            <div key={mission.id} className={`card reveal-up ${mission.theme || ''} ${idx > 0 ? 'delay-' + (idx * 100) : ''}`}>
               <div className="card-meta">
                 <span>{mission.meta}</span>
                 <span>{mission.year}</span>
@@ -830,10 +861,10 @@ const App = () => {
         </div>
 
         <div className="grid-layout">
-          {/* Exp 1 */}
-          <div className="card reveal-up">
+          {/* Exp 1 - Blue Team */}
+          <div className="card theme-blue reveal-up">
             <div className="card-meta">
-              <span>TAMIL NADU CYBER CRIME WING</span>
+              <span>BLUE TEAM // TAMIL NADU CYBER CRIME WING</span>
               <span>JUN 2026 — JUL 2026</span>
             </div>
             <h3 className="card-title" style={{ fontSize: '24px' }}>CYBERSECURITY INTERN</h3>
@@ -846,10 +877,10 @@ const App = () => {
             </ul>
           </div>
 
-          {/* Exp 2 */}
-          <div className="card reveal-up delay-100">
+          {/* Exp 2 - Red Team */}
+          <div className="card theme-red reveal-up delay-100">
             <div className="card-meta">
-              <span>ASCIZEN ACADEMY</span>
+              <span>RED TEAM // ASCIZEN ACADEMY</span>
               <span>MAR 2026 — MAY 2026</span>
             </div>
             <h3 className="card-title" style={{ fontSize: '24px' }}>VAPT INTERN</h3>
@@ -871,7 +902,7 @@ const App = () => {
 
         <div className="grid-layout">
           {researchData.map((paper, idx) => (
-            <div key={paper.id} className={`card reveal-up ${idx > 0 ? 'delay-' + (idx * 100) : ''}`}>
+            <div key={paper.id} className={`card theme-purple reveal-up ${idx > 0 ? 'delay-' + (idx * 100) : ''}`}>
               <div className="card-meta">
                 <span>{paper.meta}</span>
                 <span>{paper.year}</span>
@@ -899,11 +930,11 @@ const App = () => {
           <div className="card reveal-up" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <h3 className="card-title" style={{ fontSize: '24px', marginBottom: '16px' }}>INITIATE TRANSMISSION</h3>
             <p className="card-desc" style={{ marginBottom: '32px' }}>
-              Currently open for new opportunities. Whether you have a question, a project proposal, or just want to network, my inbox is always open.
+              Currently open for new opportunities across Offensive Security (VAPT) and Defensive DevSecOps. Whether you have an engagement, project proposal, or want to collaborate, my inbox is open.
             </p>
             <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-              <a href="https://github.com/akshaya14-byte" target="_blank" rel="noreferrer" className="btn-primary hud-label" style={{ clipPath: 'none', borderRadius: '4px', background: 'transparent', border: '1px solid var(--accent)', color: 'var(--accent)' }}>GITHUB <ArrowUpRight size={16} /></a>
-              <a href="https://www.linkedin.com/in/akshayavardhan-s" target="_blank" rel="noreferrer" className="btn-primary hud-label" style={{ clipPath: 'none', borderRadius: '4px', background: 'transparent', border: '1px solid var(--accent)', color: 'var(--accent)' }}>LINKEDIN <ArrowUpRight size={16} /></a>
+              <a href="https://github.com/akshaya14-byte" target="_blank" rel="noreferrer" className="btn-primary hud-label" style={{ clipPath: 'none', borderRadius: '4px', background: 'transparent', border: '1px solid var(--accent-blue)', color: 'var(--accent-blue)' }}>GITHUB <ArrowUpRight size={16} /></a>
+              <a href="https://www.linkedin.com/in/akshayavardhan-s" target="_blank" rel="noreferrer" className="btn-primary hud-label" style={{ clipPath: 'none', borderRadius: '4px', background: 'transparent', border: '1px solid var(--accent-red)', color: 'var(--accent-red)' }}>LINKEDIN <ArrowUpRight size={16} /></a>
             </div>
           </div>
           <div className="card reveal-up delay-100">
