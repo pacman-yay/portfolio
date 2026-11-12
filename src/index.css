@@ -355,13 +355,22 @@ header {
   .grid-layout { grid-template-columns: 1fr; }
   .hero-name { font-size: 10vw; }
   
-  header { padding: 0 16px; }
+  header { padding: 0 12px; }
 
-  .header-right { right: 16px !important; }
-  .island-logo { left: 16px; }
+  .island { padding: 0 16px; }
+  .header-right { right: 12px !important; }
+  .island-logo { left: 12px; }
   
   .card { padding: 24px; }
-  
+
+@media (max-width: 480px) {
+  header { padding: 0 8px; top: 16px; }
+  .island { padding: 0 12px; height: 44px; }
+  .island-logo { left: 8px; }
+  .header-right { right: 8px !important; }
+  .hero { padding-top: 100px !important; }
+}
+
   .terminal-container { padding: 24px; font-size: 12px; }
   
   .bottom-bar {
