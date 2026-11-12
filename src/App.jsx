@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowUpRight, X } from 'lucide-react';
+import { ArrowUpRight, X, Download, ZoomIn, ZoomOut, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Document, Page, pdfjs } from 'react-pdf';
+import 'react-pdf/dist/Page/AnnotationLayer.css';
+import 'react-pdf/dist/Page/TextLayer.css';
+
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 import './index.css';
 
-const accents = ['#00ffcc', '#ff00ff', '#ffff00', '#ff3333'];
+const accents = ['#3b82f6'];
 
 const missionsData = [
   {
@@ -91,20 +96,37 @@ const missionsData = [
     }
   },
   {
-    id: 'pngtree-vapt',
+    id: 'apkphage',
+    meta: 'DEVSECOPS / MALWARE ANALYSIS',
+    year: '2026',
+    title: 'APKPHAGE MALWARE SANDBOX',
+    shortDesc: 'Containerized Android malware detonation sandbox with a secure dynamic analysis pipeline and DevSecOps CI/CD.',
+    details: {
+      features: [
+        'Zero-dependency sandbox using Redroid, QEMU, Frida, and Mitmproxy for dynamic analysis.',
+        'Static analysis utilizing Jadx, Apktool, and Yara rules with Shannon entropy scanning.',
+        'DevSecOps CI/CD in GitHub Actions enforcing SAST, secrets scanning, and Dockerfile linting.',
+        'Trivy container CVE scanning configured as a hard gate failing on critical vulnerabilities.'
+      ],
+      techStack: 'Python, Docker, Frida, Mitmproxy, Tor, GitHub Actions',
+      link: '#'
+    }
+  },
+  {
+    id: 'vapt-assessment',
     meta: 'PENETRATION TESTING',
     year: '2026',
-    title: 'PNGTREE VAPT ASSESSMENT',
-    shortDesc: 'Comprehensive Vulnerability Assessment and Penetration Testing on pngtree.com infrastructure.',
+    title: 'INDEPENDENT VAPT ASSESSMENT',
+    shortDesc: 'Black-box VAPT engagement on a high-traffic public web platform following OWASP WSTG methodology.',
     buttonText: 'VIEW FULL REPORT',
     details: {
       findings: [
-        'Discovered Critical Broken Object-Level Authorization (IDOR) leading to cross-account read/write.',
+        'Discovered Critical Broken Object-Level Authorization (IDOR) leading to cross-account read/write and account takeover.',
         'Identified high-severity CSRF token bypass enabling cross-session request forgery.',
-        'Uncovered insufficient authentication attack protections missing rate-limiting on login endpoints.',
-        'Disclosed origin server infrastructure bypassing Cloudflare\'s WAF and DDoS protections.'
+        'Found missing brute-force protections on the login endpoint (no lockout, CAPTCHA, or rate-limiting).',
+        'Uncovered origin server exposure behind a CDN/WAF and direct IP reachability.'
       ],
-      techStack: 'Burp Suite, subfinder, amass, dnsrecon, httpx, nmap, ffuf, nuclei, sqlmap',
+      techStack: 'Burp Suite, subfinder, amass, dnsrecon, httpx, nmap, ffuf, nuclei',
       link: '/pngtree-vapt.pdf'
     }
   },
@@ -220,7 +242,121 @@ const MissionModal = ({ mission, onClose }) => {
   );
 };
 
-const TypewriterText = ({ text, speed = 20, delay = 0 }) => {
+const researchData = [
+  {
+    id: 'paper-1',
+    meta: 'RESEARCH / SECURITY',
+    year: '2026',
+    title: 'Active Cryptographic Tissue-Impedance Watermarking for Hardware-Root-of-Trust Biometric Authentication',
+    shortDesc: 'A comprehensive study on advanced biometric authentication techniques leveraging tissue-impedance watermarking for secure hardware-root-of-trust systems.',
+    link: '/Tissue Impedance watermarking_abstract.pdf'
+  }
+];
+
+const CustomPDFViewer = ({ url }) => {
+  const [numPages, setNumPages] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [scale, setScale] = useState(1.0);
+
+  function onDocumentLoadSuccess({ numPages }) {
+    setNumPages(numPages);
+    setPageNumber(1);
+  }
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', width: '100%', backgroundColor: '#0a0a0a' }}>
+      {/* TOOLBAR */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 24px', borderBottom: '1px solid rgba(255,255,255,0.05)', backgroundColor: 'rgba(255,255,255,0.02)' }}>
+        
+        <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+          <button 
+            onClick={() => setPageNumber(p => Math.max(1, p - 1))} 
+            disabled={pageNumber <= 1}
+            style={{ background: 'transparent', border: 'none', color: '#fff', cursor: pageNumber <= 1 ? 'not-allowed' : 'pointer', opacity: pageNumber <= 1 ? 0.3 : 0.8, display: 'flex', alignItems: 'center' }}
+            title="Previous Page"
+          >
+            <ChevronLeft size={20} />
+          </button>
+          
+          <span className="hud-label" style={{ minWidth: '60px', textAlign: 'center' }}>
+            <span style={{ color: 'var(--accent)' }}>{pageNumber}</span> / {numPages || '--'}
+          </span>
+          
+          <button 
+            onClick={() => setPageNumber(p => Math.min(numPages, p + 1))} 
+            disabled={pageNumber >= numPages}
+            style={{ background: 'transparent', border: 'none', color: '#fff', cursor: pageNumber >= numPages ? 'not-allowed' : 'pointer', opacity: pageNumber >= numPages ? 0.3 : 0.8, display: 'flex', alignItems: 'center' }}
+            title="Next Page"
+          >
+            <ChevronRight size={20} />
+          </button>
+        </div>
+
+        <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+          <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+            <button onClick={() => setScale(s => Math.max(0.5, s - 0.25))} style={{ background: 'transparent', border: 'none', color: '#fff', cursor: 'pointer', opacity: 0.8 }} title="Zoom Out">
+              <ZoomOut size={18} />
+            </button>
+            <span className="hud-label" style={{ minWidth: '50px', textAlign: 'center' }}>{Math.round(scale * 100)}%</span>
+            <button onClick={() => setScale(s => Math.min(3, s + 0.25))} style={{ background: 'transparent', border: 'none', color: '#fff', cursor: 'pointer', opacity: 0.8 }} title="Zoom In">
+              <ZoomIn size={18} />
+            </button>
+          </div>
+          
+          <div style={{ width: '1px', height: '16px', background: 'rgba(255,255,255,0.1)' }}></div>
+          
+          <a href={url} download style={{ color: 'var(--accent)', cursor: 'pointer', display: 'flex', alignItems: 'center', opacity: 0.9 }} title="Download Original PDF">
+            <Download size={18} />
+          </a>
+        </div>
+      </div>
+      
+      {/* VIEWER AREA */}
+      <div style={{ flex: 1, overflow: 'auto', display: 'flex', justifyContent: 'center', padding: '24px', backgroundColor: 'transparent' }}>
+        <Document 
+          file={url} 
+          onLoadSuccess={onDocumentLoadSuccess}
+          loading={<div className="hud-label blink text-accent" style={{ marginTop: '40px' }}>DECRYPTING PAYLOAD...</div>}
+        >
+          <Page 
+            pageNumber={pageNumber} 
+            scale={scale}
+            renderTextLayer={true}
+            renderAnnotationLayer={true}
+            className="pdf-page-shadow"
+          />
+        </Document>
+      </div>
+    </div>
+  );
+};
+
+const PaperModal = ({ paper, onClose }) => {
+  if (!paper) return null;
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '1200px', height: '90vh', padding: 0, display: 'flex', flexDirection: 'column', background: 'rgba(10,10,10,0.98)', border: '1px solid var(--accent)' }}>
+        <div style={{ padding: '24px', borderBottom: '1px solid rgba(255,255,255,0.05)', position: 'relative' }}>
+          <button className="modal-close" onClick={onClose}><X size={20} /></button>
+          <span className="hud-label text-accent">{paper.meta} // {paper.year}</span>
+          <h2 className="card-title" style={{ marginTop: '12px', fontSize: '24px', paddingRight: '40px' }}>{paper.title}</h2>
+        </div>
+        
+        <div style={{ flex: 1, position: 'relative' }}>
+          {paper.link && paper.link !== '#' ? (
+            <CustomPDFViewer url={paper.link} />
+          ) : (
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: 'rgba(255,255,255,0.5)' }} className="hud-label">
+              [ PAYLOAD UNAVAILABLE ]
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const TypewriterText = ({ text, speed = 30, delay = 0 }) => {
   const [display, setDisplay] = useState('');
 
   useEffect(() => {
@@ -381,15 +517,15 @@ const ProfileSection = () => {
           </div>
           <h2 className="card-title" style={{ fontSize: '24px', marginBottom: '24px' }}>OPERATIVE PROFILE</h2>
           <p className="card-desc" style={{ marginBottom: '16px' }}>
-            Undergraduate Cyber Security researcher and Full-Stack Engineer based in Chennai, India. Specializing in bridging the gap between offensive security testing and secure software development.
+            Pre-final year Cybersecurity undergraduate transitioning into DevSecOps, with a strong offensive-security foundation in Vulnerability Assessment & Penetration Testing (VAPT).
           </p>
           <p className="card-desc" style={{ marginBottom: '16px' }}>
-            Passionate about building things from scratch—whether it's writing custom Python firewalls, developing high-performance Android streaming apps with Kotlin, or tearing down infrastructure in Homelab environments over Tailscale tunnels.
+            Experienced in independently discovering high-severity vulnerabilities (IDOR, CSRF) on live production targets, and building multi-stage security pipelines with hard fail-on-finding gates to secure the software delivery lifecycle.
           </p>
           <ul className="card-bullets" style={{ marginTop: '32px' }}>
-            <li>B.E Cyber Security Undergraduate</li>
-            <li>Full-Stack Development (React, Python, Kotlin)</li>
-            <li>Vulnerability Assessment & Penetration Testing</li>
+            <li>DevSecOps & CI/CD Pipelines</li>
+            <li>Offensive Security (VAPT)</li>
+            <li>Full-Stack Development (React.js, Python, Kotlin)</li>
           </ul>
         </div>
         
@@ -411,146 +547,38 @@ const CyberDecal = ({ size = 'small', className = '' }) => {
   );
 };
 
-const SystemStatus = () => {
-  const [time, setTime] = useState(new Date().toLocaleTimeString('en-US', { hour12: false }));
-  const [isOpen, setIsOpen] = useState(false);
-  
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTime(new Date().toLocaleTimeString('en-US', { hour12: false }));
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
-
+const SkillsStrip = () => {
+  const skills = ['Python', 'React.js', 'Docker', 'GitHub Actions', 'Burp Suite', 'Frida', 'Kotlin', 'Bash', 'DevSecOps'];
   return (
-    <div style={{ position: 'relative' }}>
-      <button 
-        onClick={() => setIsOpen(!isOpen)}
-        className="island sysop-btn hud-label text-muted" 
-        style={{ gap: '12px', cursor: 'pointer', border: 'none', padding: '0 24px', height: '48px', display: 'flex', alignItems: 'center' }}
-      >
-        <span className="blink sysop-desktop-only" style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: 'var(--accent)', display: 'inline-block', boxShadow: '0 0 8px var(--accent)' }}></span>
-        <span className="sysop-text">SYS.OP NORMAL</span>
-        <span className="sysop-text" style={{ opacity: 0.5 }}>|</span>
-        <span className="sysop-text" style={{ color: 'var(--accent)' }}>{time}</span>
-        
-        <span className="sysop-mobile-only" style={{ fontSize: '18px', letterSpacing: '2px', marginLeft: '2px', transform: 'translateY(-2px)' }}>•••</span>
-      </button>
-
-      {isOpen && (
-        <div className="island animate-dropdown" style={{ position: 'absolute', top: '60px', right: 0, width: '280px', padding: '24px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '8px', height: 'auto', borderRadius: '16px', background: 'rgba(14, 14, 14, 0.9)' }}>
-          
-          <div className="mobile-nav-links" style={{ width: '100%', display: 'none', flexDirection: 'column', gap: '16px', marginBottom: '8px' }}>
-            <span className="hud-label text-accent" style={{ fontSize: '12px' }}>NAVIGATION</span>
-            <a href="#work" className="nav-link hud-label" style={{ padding: 0, border: 'none', background: 'transparent' }}><HoverScrambleText text="MISSIONS" /></a>
-            <a href="#experience" className="nav-link hud-label" style={{ padding: 0, border: 'none', background: 'transparent' }}><HoverScrambleText text="EXPERIENCE" /></a>
-            <a href="#skills" className="nav-link hud-label" style={{ padding: 0, border: 'none', background: 'transparent' }}><HoverScrambleText text="SKILLS" /></a>
-            <a href="#contact" className="nav-link hud-label" style={{ padding: 0, border: 'none', background: 'transparent' }}><HoverScrambleText text="CONTACT" /></a>
-            <div className="dash" style={{ width: '100%', margin: '8px 0', opacity: 0.5 }}></div>
-          </div>
-
-          <span className="hud-label text-accent" style={{ fontSize: '12px' }}>SYSTEM SPECS</span>
-          <div className="dash" style={{ width: '100%', margin: '8px 0', opacity: 0.5 }}></div>
-          
-          <div className="sysop-mobile-time" style={{ display: 'none', width: '100%', marginBottom: '8px', alignItems: 'center', gap: '8px' }}>
-             <span className="blink" style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: 'var(--accent)', display: 'inline-block', boxShadow: '0 0 8px var(--accent)' }}></span>
-             <span className="hud-label" style={{ color: 'var(--accent)' }}>SYS.OP NORMAL | {time}</span>
-          </div>
-
-          <p style={{ margin: 0, fontSize: '13px', lineHeight: '1.6', color: 'rgba(255,255,255,0.7)', textTransform: 'none' }}>
-            Developed and designed by<br/><strong style={{color: '#fff'}}>Akshaya Vardhan S.</strong>
-          </p>
-          <p style={{ margin: 0, fontSize: '13px', lineHeight: '1.6', color: 'rgba(255,255,255,0.7)', textTransform: 'none' }}>
-            Built with React & Vite. Custom CSS architecture with dynamic glassmorphism and CRT terminal effects.
-          </p>
-          <span className="hud-label text-muted-75" style={{ marginTop: '8px' }}>V 1.0.0 // ONLINE</span>
+    <div className="skills-strip" style={{ 
+      display: 'flex', 
+      flexWrap: 'wrap', 
+      gap: '12px', 
+      padding: '24px', 
+      background: 'rgba(255,255,255,0.02)', 
+      border: '1px solid rgba(255,255,255,0.05)', 
+      borderRadius: '8px' 
+    }}>
+      {skills.map((skill, i) => (
+        <div key={skill} className="skill-chip reveal-up" style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          padding: '10px 16px',
+          background: 'rgba(0,0,0,0.4)',
+          border: '1px solid rgba(255,255,255,0.1)',
+          borderRadius: '4px',
+          color: 'var(--accent)',
+          fontFamily: 'var(--font-mono)',
+          fontSize: '14px',
+          letterSpacing: '1px',
+          transition: 'all 0.3s',
+          transitionDelay: `${i * 50}ms`
+        }}>
+          <span style={{ fontSize: '18px', lineHeight: 1 }}>{'>'}</span>
+          <span>{skill}</span>
         </div>
-      )}
-    </div>
-  );
-};
-
-const TerminalSkills = () => {
-  const skills = ['Python', 'React.js', 'Android Dev', 'Burp Suite', 'Nmap', 'Wireshark', 'SQL', 'Linux', 'OWASP'];
-  const [lines, setLines] = useState([]);
-  const [hasStarted, setHasStarted] = useState(false);
-  const terminalRef = React.useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && !hasStarted) {
-          setHasStarted(true);
-        }
-      },
-      { threshold: 0.3 }
-    );
-    
-    if (terminalRef.current) observer.observe(terminalRef.current);
-    
-    return () => {
-      if (terminalRef.current) observer.unobserve(terminalRef.current);
-    };
-  }, [hasStarted]);
-
-  useEffect(() => {
-    if (!hasStarted) return;
-
-    const bootSequence = [
-      'INITIATING SECURE CONNECTION...',
-      'BYPASSING FIREWALL... SUCCESS',
-      'ESTABLISHING SSH TUNNEL @ 192.168.1.42',
-      'ACCESS GRANTED. ROOT PRIVILEGES ACQUIRED.',
-      'EXTRACTING ARSENAL PAYLOADS...',
-      '=========================================='
-    ];
-    
-    let currentLines = [];
-    let delay = 0;
-
-    bootSequence.forEach((line) => {
-      setTimeout(() => {
-        currentLines = [...currentLines, { text: line, type: 'boot' }];
-        setLines(currentLines);
-      }, delay);
-      delay += 400 + Math.random() * 300;
-    });
-
-    skills.forEach((skill) => {
-      setTimeout(() => {
-        currentLines = [...currentLines, { text: skill, type: 'skill' }];
-        setLines(currentLines);
-      }, delay);
-      delay += 800;
-    });
-
-    setTimeout(() => {
-        currentLines = [...currentLines, { text: '==========================================', type: 'boot' }];
-        currentLines = [...currentLines, { text: 'ALL PAYLOADS DEPLOYED.', type: 'boot' }];
-        currentLines = [...currentLines, { text: 'CONNECTION TERMINATED.', type: 'boot' }];
-        setLines(currentLines);
-    }, delay + 500);
-
-  }, [hasStarted]);
-
-  return (
-    <div className="terminal-container hacker-terminal reveal-up" ref={terminalRef}>
-      <div className="terminal-body hacker-text">
-        {lines.map((line, i) => (
-          <div key={i} className="terminal-line" style={{marginBottom: '4px'}}>
-            {line.type === 'skill' ? (
-              <>
-                 <span style={{color: 'var(--accent)', fontWeight: 'bold'}}><ScrambleText text={`> ${line.text}`} /></span>
-              </>
-            ) : (
-              <span style={{color: line.text.includes('SUCCESS') || line.text.includes('GRANTED') ? 'var(--accent)' : 'inherit'}}>
-                <TypewriterText text={line.text} speed={15} />
-              </span>
-            )}
-          </div>
-        ))}
-        {lines.length > 0 && <span className="blink" style={{background: 'var(--accent)', color: '#000', display: 'inline-block', width: '8px', height: '14px', marginTop: '4px'}}></span>}
-      </div>
+      ))}
     </div>
   );
 };
@@ -592,7 +620,8 @@ const InteractiveTerminal = () => {
         newHistory.push({ text: 'akshaya_vardhan - Undergraduate Cyber Security Researcher & Full-Stack Engineer', type: 'output' });
         break;
       case 'ls':
-        newHistory.push({ text: 'MISSIONS: case-mgmt firewall hive moosik zepto-osint pngtree-vapt home-lab recon-it', type: 'output' });
+        newHistory.push({ text: 'MISSIONS: apkphage case-mgmt firewall hive moosik vapt-assessment home-lab recon-it', type: 'output' });
+        newHistory.push({ text: 'PAPERS: paper-1', type: 'output' });
         break;
       case 'clear':
         setHistory([]);
@@ -738,7 +767,8 @@ const ContactForm = () => {
 const App = () => {
   const [accentIdx, setAccentIdx] = useState(0);
   const [selectedMission, setSelectedMission] = useState(null);
-  const accents = ['#00f0ff', '#0070ff', '#7000ff', '#ff0055'];
+  const [selectedPaper, setSelectedPaper] = useState(null);
+  const accents = ['#3b82f6'];
 
   useEffect(() => {
     if ('scrollRestoration' in window.history) {
@@ -789,9 +819,8 @@ const App = () => {
         
         <div className="header-right" style={{ position: 'absolute', right: '24px', display: 'flex', gap: '12px', alignItems: 'center' }}>
           <a href="/resume.pdf" download="resume.pdf" className="island hud-label hide-mobile" style={{ color: 'var(--accent)', borderColor: 'var(--accent)', textDecoration: 'none', transition: 'all 0.2s', cursor: 'pointer' }}>
-            [ EXTRACT DOSSIER ]
+            EXTRACT DOSSIER 
           </a>
-          <SystemStatus />
         </div>
       </header>
 
@@ -799,7 +828,7 @@ const App = () => {
       <section id="top" className="hero">
         <div style={{ paddingTop: '20px', zIndex: 2 }}>
           <p className="hero-subtitle reveal-up is-visible">CYBER SECURITY UNDERGRADUATE</p>
-          <p className="hud-label text-muted-75 reveal-up delay-100 is-visible">VAPT · ANDROID APP DEV · ETHICAL HACKING · NETWORK ANALYSIS</p>
+          <p className="hud-label text-muted-75 reveal-up delay-100 is-visible">VAPT · DEVSECOPS · OFFENSIVE SECURITY · AUTOMATION</p>
         </div>
 
         <div className="hero-content">
@@ -827,13 +856,12 @@ const App = () => {
 
       <ProfileSection />
 
-      {/* SKILLS TERMINAL */}
-      <section id="skills-terminal" className="section-container">
+      <section id="skills" className="section-container">
         <div className="section-header reveal-up">
-          <span className="hud-label text-accent">TECHNICAL ARSENAL // BOOT SEQUENCE</span>
+          <span className="hud-label text-accent">TECHNICAL ARSENAL</span>
           <CyberDecal size="small" />
         </div>
-        <TerminalSkills />
+        <SkillsStrip />
       </section>
 
       {/* WORK / PROJECTS */}
@@ -873,16 +901,16 @@ const App = () => {
           {/* Exp 1 */}
           <div className="card reveal-up">
             <div className="card-meta">
-              <span>TAMIL NADU POLICE</span>
-              <span>01/06/2026 — 31/07/2026</span>
+              <span>TAMIL NADU CYBER CRIME WING</span>
+              <span>JUN 2026 — JUL 2026</span>
             </div>
-            <h3 className="card-title" style={{ fontSize: '24px' }}>CYBER CRIME WING INTERN</h3>
+            <h3 className="card-title" style={{ fontSize: '24px' }}>CYBERSECURITY INTERN</h3>
             <ul className="card-bullets">
-              <li>Developed a real-time crime case handling dashboard used to manage the full case flow.</li>
-              <li>Built with React.js for the frontend and Python for automation.</li>
-              <li>Implemented Role-Based Access Control (RBAC) to manage permissions.</li>
-              <li>Added security features including Multi-Factor Authentication (MFA) and rate-limiting.</li>
-              <li>Gained hands-on experience with how real cybercrime cases are handled.</li>
+              <li>Developed a real-time case management dashboard used by investigating officers to create, update, and track cybercrime case records end-to-end.</li>
+              <li>Built the frontend in React.js with Python-driven backend automation, enabling timely status updates across the case lifecycle.</li>
+              <li>Implemented Role-Based Access Control (RBAC) to enforce permission boundaries across distinct user roles (officers, supervisors, admins).</li>
+              <li>Hardened the application with Multi-Factor Authentication (MFA) and endpoint rate-limiting to mitigate credential-based attacks.</li>
+              <li>Gained direct exposure to how real cybercrime cases are triaged, documented, and escalated within a law-enforcement workflow.</li>
             </ul>
           </div>
 
@@ -890,15 +918,41 @@ const App = () => {
           <div className="card reveal-up delay-100">
             <div className="card-meta">
               <span>ASCIZEN ACADEMY</span>
-              <span>01/03/2026 — 31/05/2026</span>
+              <span>MAR 2026 — MAY 2026</span>
             </div>
             <h3 className="card-title" style={{ fontSize: '24px' }}>VAPT INTERN</h3>
             <ul className="card-bullets">
-              <li>Applied OWASP Top 10 methodology across real-world web targets.</li>
-              <li>Practiced network enumeration, Linux-based tooling, and CTF-driven exploit techniques.</li>
-              <li>Documented findings using professional VAPT reporting standards.</li>
+              <li>Applied OWASP Top 10 methodology across live web application targets to identify and validate security flaws.</li>
+              <li>Practiced network enumeration and Linux-based offensive tooling through structured, CTF-driven exploit exercises.</li>
+              <li>Authored findings using professional VAPT reporting standards suitable for client and audit review.</li>
             </ul>
           </div>
+        </div>
+      </section>
+
+      {/* RESEARCH */}
+      <section id="research" className="section-container">
+        <div className="section-header reveal-up">
+          <span className="hud-label text-accent">RESEARCH PAPERS</span>
+          <CyberDecal size="small" />
+        </div>
+
+        <div className="grid-layout">
+          {researchData.map((paper, idx) => (
+            <div key={paper.id} className={`card reveal-up ${idx > 0 ? 'delay-' + (idx * 100) : ''}`}>
+              <div className="card-meta">
+                <span>{paper.meta}</span>
+                <span>{paper.year}</span>
+              </div>
+              <h3 className="card-title">{paper.title}</h3>
+              <p className="card-desc">
+                {paper.shortDesc}
+              </p>
+              <button onClick={() => setSelectedPaper(paper)} className="modal-pill-btn" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
+                [ READ PAPER ] <ArrowUpRight size={14} style={{ marginLeft: '4px' }} />
+              </button>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -949,6 +1003,7 @@ const App = () => {
 
 
       <MissionModal mission={selectedMission} onClose={() => setSelectedMission(null)} />
+      <PaperModal paper={selectedPaper} onClose={() => setSelectedPaper(null)} />
     </>
   );
 };
