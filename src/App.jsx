@@ -548,35 +548,82 @@ const CyberDecal = ({ size = 'small', className = '' }) => {
 };
 
 const SkillsStrip = () => {
-  const skills = ['Python', 'React.js', 'Docker', 'GitHub Actions', 'Burp Suite', 'Frida', 'Kotlin', 'Bash', 'DevSecOps'];
+  const tacticalArsenal = [
+    {
+      sector: 'SECTOR 01 // RED TEAM',
+      status: 'OPERATIONAL',
+      title: 'OFFENSIVE OPS & VAPT',
+      desc: 'Web & API penetration testing, binary reverse engineering, vulnerability research, and active target reconnaissance.',
+      skills: [
+        { name: 'Burp Suite', role: 'Web & API VAPT' },
+        { name: 'Frida & Jadx', role: 'Dynamic APK Hooking' },
+        { name: 'OWASP Top 10', role: 'WSTG Methodology' },
+        { name: 'Nmap & Wireshark', role: 'Network Recon' },
+        { name: 'Subfinder & Httpx', role: 'Attack Surface Mapping' },
+        { name: 'Metasploit', role: 'Exploit Simulation' },
+      ]
+    },
+    {
+      sector: 'SECTOR 02 // DEFENSE',
+      status: 'HARDENED',
+      title: 'DEVSECOPS & INFRA',
+      desc: 'Container sandboxing, automated pipeline security gates, vulnerability scanning, and zero-trust mesh networking.',
+      skills: [
+        { name: 'Docker', role: 'Isolated Sandboxing' },
+        { name: 'GitHub Actions', role: 'CI/CD Security Gates' },
+        { name: 'Trivy & SAST', role: 'CVE & Secrets Scanning' },
+        { name: 'Linux Hardening', role: 'Kernel & Access Control' },
+        { name: 'Tailscale & VPN', role: 'Zero-Trust Mesh Net' },
+        { name: 'Scapy', role: 'Packet & DDoS Analysis' },
+      ]
+    },
+    {
+      sector: 'SECTOR 03 // SYSTEMS',
+      status: 'PRODUCTION',
+      title: 'ENGINEERING & CODE',
+      desc: 'Full-stack mission dashboards, low-level network programming, and high-performance native Android applications.',
+      skills: [
+        { name: 'Python', role: 'Automation & Sockets' },
+        { name: 'Kotlin & Android', role: 'Jetpack Compose & Media3' },
+        { name: 'React.js', role: 'Mission Dashboards' },
+        { name: 'Bash Scripting', role: 'POSIX Automation' },
+        { name: 'PostgreSQL', role: 'Relational Data Stores' },
+        { name: 'REST APIs & RBAC', role: 'Secure Architecture' },
+      ]
+    }
+  ];
+
   return (
-    <div className="skills-strip" style={{
-      display: 'flex',
-      flexWrap: 'wrap',
-      gap: '12px',
-      padding: '24px',
-      background: 'rgba(255,255,255,0.02)',
-      border: '1px solid rgba(255,255,255,0.05)',
-      borderRadius: '8px'
-    }}>
-      {skills.map((skill, i) => (
-        <div key={skill} className="skill-chip reveal-up" style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '8px',
-          padding: '10px 16px',
-          background: 'rgba(0,0,0,0.4)',
-          border: '1px solid rgba(255,255,255,0.1)',
-          borderRadius: '4px',
-          color: 'var(--accent)',
-          fontFamily: 'var(--font-mono)',
-          fontSize: '14px',
-          letterSpacing: '1px',
-          transition: 'all 0.3s',
-          transitionDelay: `${i * 50}ms`
-        }}>
-          <span style={{ fontSize: '18px', lineHeight: 1 }}>{'>'}</span>
-          <span>{skill}</span>
+    <div className="arsenal-grid">
+      {tacticalArsenal.map((category, idx) => (
+        <div key={category.sector} className={`arsenal-card reveal-up ${idx > 0 ? `delay-${idx * 100}` : ''}`}>
+          <div className="card-meta">
+            <span>{category.sector}</span>
+            <span className="text-accent arsenal-badge-status">
+              <span className="blink arsenal-badge-dot"></span>
+              {category.status}
+            </span>
+          </div>
+
+          <h3 className="card-title" style={{ fontSize: '20px', letterSpacing: '1px', marginBottom: '12px' }}>
+            {category.title}
+          </h3>
+
+          <p className="card-desc" style={{ fontSize: '13px', marginBottom: '20px', lineHeight: '1.6', minHeight: '42px' }}>
+            {category.desc}
+          </p>
+
+          <div className="arsenal-list">
+            {category.skills.map((skill) => (
+              <div key={skill.name} className="arsenal-item">
+                <div className="arsenal-item-name">
+                  <span className="arsenal-item-arrow">&gt;</span>
+                  <span>{skill.name}</span>
+                </div>
+                <span className="arsenal-item-role">{skill.role}</span>
+              </div>
+            ))}
+          </div>
         </div>
       ))}
     </div>

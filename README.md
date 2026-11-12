@@ -13,7 +13,7 @@ This portfolio is designed to look like a classified operative dossier, complete
 
 ## ✨ Core Features
 - **Operative Dossier**: A classified-style "About Me" section detailing experience in offensive security testing and secure software development.
-- **Technical Arsenal**: Custom-built glowing CSS progress bars categorizing skills into Offensive Security, Defensive & Infra, and Engineering.
+- **Technical Arsenal**: Categorized tactical matrix grouping core competencies into Offensive Ops & VAPT, DevSecOps & Infra, and Systems & Engineering with real-time capability badges.
 - **Project Modals**: Standardized, glassmorphic modals that display project features and key findings using a terminal typewriter reveal effect.
 - **Resume Extraction**: A dedicated 1-click button to securely download the operative's CV.
 - **Secure Comm Channel**: An inline contact form wired directly to a Formspree endpoint for immediate communication.
