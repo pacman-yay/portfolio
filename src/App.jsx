@@ -706,7 +706,7 @@ const App = () => {
   const [accentIdx, setAccentIdx] = useState(0);
   const [selectedMission, setSelectedMission] = useState(null);
   const [selectedPaper, setSelectedPaper] = useState(null);
-  const accents = ['#ffffff'];
+  const accents = ['#5b8def'];
 
   useEffect(() => {
     if ('scrollRestoration' in window.history) {
@@ -778,10 +778,10 @@ const App = () => {
         <div className="hero-content">
           <div className="hero-title-container">
             <h1 className="hero-name">
-              <span className="hero-name-line"><span className="hero-first-name glitch" data-text="AKSHAYA">AKSHAYA</span></span>
+              <span className="hero-name-line"><span className="hero-first-name">AKSHAYA</span></span>
               <span className="hero-name-line" style={{ display: 'flex', alignItems: 'center', gap: '32px', flexWrap: 'wrap' }}>
-                <span><span className="hero-last-name glitch" data-text="VARDHAN">VARDHAN</span>&nbsp;<span className="hero-last-name glitch" data-text="S.">S.</span></span>
-                <CyberDecal size="hero" className="glitch" />
+                <span><span className="hero-last-name">VARDHAN</span>&nbsp;<span className="hero-last-name">S.</span></span>
+                <CyberDecal size="hero" />
               </span>
             </h1>
             <div className="hero-tags reveal-up delay-300 is-visible">

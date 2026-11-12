@@ -228,14 +228,14 @@ header {
 }
 
 .hero-first-name {
-  font-size: clamp(2.3rem, 0.5rem + 10.3vw, 10.3rem);
+  font-size: clamp(2rem, 0.4rem + 9vw, 9rem);
   font-weight: 300;
   color: var(--muted);
   letter-spacing: -0.01em;
 }
 
 .hero-last-name {
-  font-size: clamp(3.5rem, 0.8rem + 14.8vw, 14.8rem);
+  font-size: clamp(3rem, 0.7rem + 13vw, 13rem);
   font-weight: 900;
   color: var(--accent);
   letter-spacing: -0.02em;
@@ -288,10 +288,10 @@ header {
   gap: 8px;
 }
 .cyber-bar {
-  background-color: #ffffff;
+  background-color: #5b8def;
   transform: skewX(-25deg);
   transition: all 0.3s ease;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 10px rgba(91, 141, 239, 0.4);
 }
 .cyber-decal.size-small .cyber-bar {
   width: 12px;
@@ -353,7 +353,7 @@ header {
   }
   
   .grid-layout { grid-template-columns: 1fr; }
-  .hero-name { font-size: 11vw; }
+  .hero-name { font-size: 10vw; }
   
   header { padding: 0 16px; }
 
