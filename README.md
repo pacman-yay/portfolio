@@ -2,7 +2,7 @@
 
 A highly interactive, immersive cyber-security portfolio built for **Akshayavardhan S.**, an undergraduate Cyber Security researcher and Full-Stack Engineer based in Chennai, India.
 
-This portfolio is designed to look like a classified operative dossier, complete with a glassmorphic hacker aesthetic and an interactive command-line interface.
+This portfolio is designed to look like a classified operative dossier, complete with a glassmorphic hacker aesthetic.
 
 ## 🛠 Tech Stack
 - **Frontend Framework**: React (v19)
@@ -12,7 +12,6 @@ This portfolio is designed to look like a classified operative dossier, complete
 - **Contact Form**: Formspree API (No backend required)
 
 ## ✨ Core Features
-- **Interactive System Console**: A fully functional command-line interface at the bottom of the page. Visitors can type `help`, `whoami`, `ls`, or `cat resume.pdf` to interact with the site.
 - **Operative Dossier**: A classified-style "About Me" section detailing experience in offensive security testing and secure software development.
 - **Technical Arsenal**: Custom-built glowing CSS progress bars categorizing skills into Offensive Security, Defensive & Infra, and Engineering.
 - **Project Modals**: Standardized, glassmorphic modals that display project features and key findings using a terminal typewriter reveal effect.

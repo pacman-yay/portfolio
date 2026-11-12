@@ -182,16 +182,16 @@ const MissionModal = ({ mission, onClose }) => {
         <button className="modal-close" onClick={onClose}>
           <X size={20} />
         </button>
-        
+
         <span className="hud-label text-accent">{mission.meta} // {mission.year}</span>
         <h2>{mission.title}</h2>
-        
+
         <p style={{ fontSize: '16px', color: '#fff', marginBottom: '32px' }}>
           {mission.shortDesc}
         </p>
-        
+
         <div className="dash" style={{ opacity: 0.2, margin: '24px 0' }}></div>
-        
+
         {mission.details.features && (
           <>
             <h3>FEATURES & CAPABILITIES</h3>
@@ -208,11 +208,11 @@ const MissionModal = ({ mission, onClose }) => {
             <h3>KEY FINDINGS</h3>
             <ul style={{ listStyleType: 'none', paddingLeft: '0' }}>
               {mission.details.findings.map((finding, i) => (
-                <li 
-                  key={i} 
-                  className="text-accent hacker-text" 
-                  style={{ 
-                    marginBottom: '16px', 
+                <li
+                  key={i}
+                  className="text-accent hacker-text"
+                  style={{
+                    marginBottom: '16px',
                     lineHeight: '1.6'
                   }}
                 >
@@ -222,10 +222,10 @@ const MissionModal = ({ mission, onClose }) => {
             </ul>
           </>
         )}
-        
+
         <h3>TECHNICAL ARCHITECTURE</h3>
         <p>{mission.details.techStack}</p>
-        
+
         <div style={{ marginTop: '40px' }}>
           {mission.id === 'case-mgmt' ? (
             <div className="modal-pill-btn confidential-btn" style={{ display: 'inline-flex' }}>
@@ -267,23 +267,23 @@ const CustomPDFViewer = ({ url }) => {
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', width: '100%', backgroundColor: '#0a0a0a' }}>
       {/* TOOLBAR */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 24px', borderBottom: '1px solid rgba(255,255,255,0.05)', backgroundColor: 'rgba(255,255,255,0.02)' }}>
-        
+
         <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-          <button 
-            onClick={() => setPageNumber(p => Math.max(1, p - 1))} 
+          <button
+            onClick={() => setPageNumber(p => Math.max(1, p - 1))}
             disabled={pageNumber <= 1}
             style={{ background: 'transparent', border: 'none', color: '#fff', cursor: pageNumber <= 1 ? 'not-allowed' : 'pointer', opacity: pageNumber <= 1 ? 0.3 : 0.8, display: 'flex', alignItems: 'center' }}
             title="Previous Page"
           >
             <ChevronLeft size={20} />
           </button>
-          
+
           <span className="hud-label" style={{ minWidth: '60px', textAlign: 'center' }}>
             <span style={{ color: 'var(--accent)' }}>{pageNumber}</span> / {numPages || '--'}
           </span>
-          
-          <button 
-            onClick={() => setPageNumber(p => Math.min(numPages, p + 1))} 
+
+          <button
+            onClick={() => setPageNumber(p => Math.min(numPages, p + 1))}
             disabled={pageNumber >= numPages}
             style={{ background: 'transparent', border: 'none', color: '#fff', cursor: pageNumber >= numPages ? 'not-allowed' : 'pointer', opacity: pageNumber >= numPages ? 0.3 : 0.8, display: 'flex', alignItems: 'center' }}
             title="Next Page"
@@ -302,24 +302,24 @@ const CustomPDFViewer = ({ url }) => {
               <ZoomIn size={18} />
             </button>
           </div>
-          
+
           <div style={{ width: '1px', height: '16px', background: 'rgba(255,255,255,0.1)' }}></div>
-          
+
           <a href={url} download style={{ color: 'var(--accent)', cursor: 'pointer', display: 'flex', alignItems: 'center', opacity: 0.9 }} title="Download Original PDF">
             <Download size={18} />
           </a>
         </div>
       </div>
-      
+
       {/* VIEWER AREA */}
       <div style={{ flex: 1, overflow: 'auto', display: 'flex', justifyContent: 'center', padding: '24px', backgroundColor: 'transparent' }}>
-        <Document 
-          file={url} 
+        <Document
+          file={url}
           onLoadSuccess={onDocumentLoadSuccess}
           loading={<div className="hud-label blink text-accent" style={{ marginTop: '40px' }}>DECRYPTING PAYLOAD...</div>}
         >
-          <Page 
-            pageNumber={pageNumber} 
+          <Page
+            pageNumber={pageNumber}
             scale={scale}
             renderTextLayer={true}
             renderAnnotationLayer={true}
@@ -341,7 +341,7 @@ const PaperModal = ({ paper, onClose }) => {
           <span className="hud-label text-accent">{paper.meta} // {paper.year}</span>
           <h2 className="card-title" style={{ marginTop: '12px', fontSize: '24px', paddingRight: '40px' }}>{paper.title}</h2>
         </div>
-        
+
         <div style={{ flex: 1, position: 'relative' }}>
           {paper.link && paper.link !== '#' ? (
             <CustomPDFViewer url={paper.link} />
@@ -380,26 +380,26 @@ const TypewriterText = ({ text, speed = 30, delay = 0 }) => {
 const ScrambleText = ({ text, delay = 0 }) => {
   const [display, setDisplay] = useState('');
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ!<>-_\\\\/[]{}—=+*^?#________';
-  
+
   useEffect(() => {
     let iteration = 0;
     let interval;
     const timeout = setTimeout(() => {
       interval = setInterval(() => {
         setDisplay(text.split('').map((letter, index) => {
-          if(index < iteration) {
+          if (index < iteration) {
             return text[index];
           }
           return chars[Math.floor(Math.random() * chars.length)];
         }).join(''));
-        
-        if(iteration >= text.length){
+
+        if (iteration >= text.length) {
           clearInterval(interval);
         }
-        iteration += 1 / 3; 
+        iteration += 1 / 3;
       }, 30);
     }, delay);
-    
+
     return () => {
       clearTimeout(timeout);
       if (interval) clearInterval(interval);
@@ -419,12 +419,12 @@ const HoverScrambleText = ({ text }) => {
     clearInterval(intervalRef.current);
     intervalRef.current = setInterval(() => {
       setDisplay(text.split('').map((letter, index) => {
-        if(index < iteration) return text[index];
+        if (index < iteration) return text[index];
         return chars[Math.floor(Math.random() * chars.length)];
       }).join(''));
-      
-      if(iteration >= text.length) clearInterval(intervalRef.current);
-      iteration += 1 / 2; 
+
+      if (iteration >= text.length) clearInterval(intervalRef.current);
+      iteration += 1 / 2;
     }, 30);
   };
 
@@ -434,7 +434,7 @@ const HoverScrambleText = ({ text }) => {
   };
 
   return (
-    <span onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} style={{display: 'inline-block'}}>
+    <span onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} style={{ display: 'inline-block' }}>
       {display}
     </span>
   );
@@ -448,7 +448,7 @@ const ThreatRating = () => {
         <span>THREAT RATING</span>
       </div>
       <h2 className="card-title" style={{ fontSize: '20px', marginBottom: '24px' }}>TRAINING & CLEARANCE</h2>
-      
+
       {/* PortSwigger */}
       <div style={{ marginBottom: '24px', paddingBottom: '24px', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '8px', marginBottom: '12px' }}>
@@ -460,7 +460,7 @@ const ThreatRating = () => {
             <span className="hud-label" style={{ color: '#fff', fontSize: '18px' }}>APPRENTICE</span>
           </div>
         </div>
-        
+
         <div style={{ display: 'flex', gap: '8px' }}>
           <div style={{ flex: 1, background: 'rgba(255,255,255,0.05)', padding: '8px', borderRadius: '4px' }}>
             <div className="hud-label" style={{ fontSize: '10px', color: 'rgba(255,255,255,0.5)' }}>LABS SOLVED</div>
@@ -484,7 +484,7 @@ const ThreatRating = () => {
             <span className="hud-label" style={{ color: '#fff', fontSize: '18px' }}>NOOB</span>
           </div>
         </div>
-        
+
         <div style={{ display: 'flex', gap: '8px' }}>
           <div style={{ flex: 1, background: 'rgba(255,255,255,0.05)', padding: '8px', borderRadius: '4px' }}>
             <div className="hud-label" style={{ fontSize: '10px', color: 'rgba(255,255,255,0.5)' }}>MACHINES OWNED</div>
@@ -507,7 +507,7 @@ const ProfileSection = () => {
         <span className="hud-label text-accent">01 // DOSSIER</span>
         <div className="dash"></div>
       </div>
-      
+
       <div className="grid-layout">
         {/* DOSSIER */}
         <div className="card reveal-up is-visible" style={{ background: 'rgba(20,20,20,0.95)' }}>
@@ -528,7 +528,7 @@ const ProfileSection = () => {
             <li>Full-Stack Development (React.js, Python, Kotlin)</li>
           </ul>
         </div>
-        
+
         {/* THREAT RATING */}
         <ThreatRating />
       </div>
@@ -550,14 +550,14 @@ const CyberDecal = ({ size = 'small', className = '' }) => {
 const SkillsStrip = () => {
   const skills = ['Python', 'React.js', 'Docker', 'GitHub Actions', 'Burp Suite', 'Frida', 'Kotlin', 'Bash', 'DevSecOps'];
   return (
-    <div className="skills-strip" style={{ 
-      display: 'flex', 
-      flexWrap: 'wrap', 
-      gap: '12px', 
-      padding: '24px', 
-      background: 'rgba(255,255,255,0.02)', 
-      border: '1px solid rgba(255,255,255,0.05)', 
-      borderRadius: '8px' 
+    <div className="skills-strip" style={{
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: '12px',
+      padding: '24px',
+      background: 'rgba(255,255,255,0.02)',
+      border: '1px solid rgba(255,255,255,0.05)',
+      borderRadius: '8px'
     }}>
       {skills.map((skill, i) => (
         <div key={skill} className="skill-chip reveal-up" style={{
@@ -583,121 +583,6 @@ const SkillsStrip = () => {
   );
 };
 
-const InteractiveTerminal = () => {
-  const [history, setHistory] = useState([
-    { text: 'INITIATING SECURE CONNECTION...', type: 'boot' },
-    { text: 'ACCESS GRANTED. ROOT PRIVILEGES ACQUIRED.', type: 'boot' },
-    { text: 'Type "help" for a list of available commands.', type: 'boot' }
-  ]);
-  const [input, setInput] = useState('');
-  const containerRef = React.useRef(null);
-  const inputRef = React.useRef(null);
-
-  const scrollToBottom = () => {
-    if (containerRef.current) {
-      containerRef.current.scrollTop = containerRef.current.scrollHeight;
-    }
-  };
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [history]);
-
-  const handleCommand = (cmd) => {
-    const trimmed = cmd.trim();
-    if (!trimmed) return;
-
-    const newHistory = [...history, { text: `> ${trimmed}`, type: 'input' }];
-    
-    const args = trimmed.toLowerCase().split(' ');
-    const base = args[0];
-
-    switch(base) {
-      case 'help':
-        newHistory.push({ text: 'AVAILABLE COMMANDS: help, whoami, ls, clear, cat, sudo, date', type: 'output' });
-        break;
-      case 'whoami':
-        newHistory.push({ text: 'akshaya_vardhan - Undergraduate Cyber Security Researcher & Full-Stack Engineer', type: 'output' });
-        break;
-      case 'ls':
-        newHistory.push({ text: 'MISSIONS: apkphage case-mgmt firewall hive moosik vapt-assessment home-lab recon-it', type: 'output' });
-        newHistory.push({ text: 'PAPERS: paper-1', type: 'output' });
-        break;
-      case 'clear':
-        setHistory([]);
-        setInput('');
-        return;
-      case 'cat':
-        if (args[1] === 'resume.pdf') {
-          newHistory.push({ text: 'INITIATING DOWNLOAD: resume.pdf...', type: 'output' });
-          const link = document.createElement('a');
-          link.href = '/resume.pdf';
-          link.download = 'resume.pdf';
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-        } else if (args[1]) {
-          newHistory.push({ text: `cat: ${args[1]}: No such file or directory`, type: 'output' });
-        } else {
-          newHistory.push({ text: 'Usage: cat [filename]', type: 'output' });
-        }
-        break;
-      case 'sudo':
-        newHistory.push({ text: 'akshaya is not in the sudoers file. This incident will be reported.', type: 'output' });
-        break;
-      case 'date':
-        newHistory.push({ text: new Date().toString(), type: 'output' });
-        break;
-      default:
-        newHistory.push({ text: `Command not found: ${base}`, type: 'output' });
-    }
-
-    setHistory(newHistory);
-    setInput('');
-  };
-
-  return (
-    <div className="terminal-container hacker-terminal reveal-up is-visible" style={{ minHeight: '350px' }} onClick={() => inputRef.current?.focus()}>
-      <div ref={containerRef} className="terminal-body hacker-text" style={{ padding: '24px', overflowY: 'auto', maxHeight: '450px', display: 'flex', flexDirection: 'column' }}>
-        {history.map((line, i) => (
-          <div key={i} className="terminal-line" style={{ marginBottom: '8px', color: line.type === 'input' ? '#fff' : 'inherit' }}>
-            {line.type === 'boot' ? <TypewriterText text={line.text} speed={10} /> : line.text}
-          </div>
-        ))}
-        
-        <form 
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleCommand(input);
-          }}
-          style={{ display: 'flex', alignItems: 'center', marginTop: '8px' }}
-        >
-          <span style={{ color: 'var(--accent)', marginRight: '8px' }}>$</span>
-          <input
-            ref={inputRef}
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            autoComplete="off"
-            autoCorrect="off"
-            autoCapitalize="off"
-            spellCheck="false"
-            style={{
-              background: 'transparent',
-              border: 'none',
-              color: '#fff',
-              fontFamily: 'var(--font-mono)',
-              fontSize: '16px',
-              outline: 'none',
-              flex: 1,
-              textShadow: '0 0 8px var(--accent)'
-            }}
-          />
-        </form>
-      </div>
-    </div>
-  );
-};
 
 const ContactForm = () => {
   const [status, setStatus] = useState('');
@@ -706,9 +591,9 @@ const ContactForm = () => {
     e.preventDefault();
     const form = e.target;
     const data = new FormData(form);
-    
+
     setStatus('TRANSMITTING...');
-    
+
     try {
       const response = await fetch('https://formspree.io/f/xaqgggre', {
         method: 'POST',
@@ -717,7 +602,7 @@ const ContactForm = () => {
           'Accept': 'application/json'
         }
       });
-      
+
       if (response.ok) {
         setStatus('TRANSMISSION SUCCESSFUL');
         form.reset();
@@ -732,27 +617,27 @@ const ContactForm = () => {
   return (
     <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
       <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-        <input 
-          type="text" 
-          name="name" 
-          required 
-          placeholder="IDENTIFICATION (NAME)" 
-          style={{ flex: '1 1 200px', padding: '12px 16px', background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(255,255,255,0.1)', color: '#fff', outline: 'none', fontFamily: 'var(--font-mono)' }} 
+        <input
+          type="text"
+          name="name"
+          required
+          placeholder="IDENTIFICATION (NAME)"
+          style={{ flex: '1 1 200px', padding: '12px 16px', background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(255,255,255,0.1)', color: '#fff', outline: 'none', fontFamily: 'var(--font-mono)' }}
         />
-        <input 
-          type="email" 
-          name="email" 
-          required 
-          placeholder="COMM LINK (EMAIL)" 
-          style={{ flex: '1 1 200px', padding: '12px 16px', background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(255,255,255,0.1)', color: '#fff', outline: 'none', fontFamily: 'var(--font-mono)' }} 
+        <input
+          type="email"
+          name="email"
+          required
+          placeholder="COMM LINK (EMAIL)"
+          style={{ flex: '1 1 200px', padding: '12px 16px', background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(255,255,255,0.1)', color: '#fff', outline: 'none', fontFamily: 'var(--font-mono)' }}
         />
       </div>
-      <textarea 
-        name="message" 
-        required 
-        placeholder="ENCRYPTED PAYLOAD (MESSAGE)" 
+      <textarea
+        name="message"
+        required
+        placeholder="ENCRYPTED PAYLOAD (MESSAGE)"
         rows="4"
-        style={{ padding: '12px 16px', background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(255,255,255,0.1)', color: '#fff', outline: 'none', fontFamily: 'var(--font-mono)', resize: 'vertical' }} 
+        style={{ padding: '12px 16px', background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(255,255,255,0.1)', color: '#fff', outline: 'none', fontFamily: 'var(--font-mono)', resize: 'vertical' }}
       />
       <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
         <button type="submit" className="btn-primary hud-label" style={{ border: 'none', cursor: 'pointer', padding: '12px 24px', letterSpacing: '2px', background: 'var(--accent)', color: '#000' }}>
@@ -809,17 +694,17 @@ const App = () => {
           <span style={{ fontSize: '18px', fontWeight: 900 }}>AKSHAY</span>
           <span className="hide-mobile">PORTFOLIO</span>
         </a>
-        
+
         <nav className="island nav-links">
           <a href="#skills" className="nav-link hud-label"><HoverScrambleText text="SKILLS" /></a>
           <a href="#work" className="nav-link hud-label"><HoverScrambleText text="MISSIONS" /></a>
           <a href="#experience" className="nav-link hud-label"><HoverScrambleText text="EXPERIENCE" /></a>
           <a href="#contact" className="nav-link hud-label"><HoverScrambleText text="CONTACT" /></a>
         </nav>
-        
+
         <div className="header-right" style={{ position: 'absolute', right: '24px', display: 'flex', gap: '12px', alignItems: 'center' }}>
           <a href="/resume.pdf" download="resume.pdf" className="island hud-label hide-mobile" style={{ color: 'var(--accent)', borderColor: 'var(--accent)', textDecoration: 'none', transition: 'all 0.2s', cursor: 'pointer' }}>
-            EXTRACT DOSSIER 
+            EXTRACT DOSSIER
           </a>
         </div>
       </header>
@@ -956,15 +841,6 @@ const App = () => {
         </div>
       </section>
 
-      {/* INTERACTIVE TERMINAL */}
-      <section id="interactive-terminal" className="section-container">
-        <div className="section-header reveal-up">
-          <span className="hud-label text-accent">ROOT SHELL // INTERACTIVE UPLINK</span>
-          <CyberDecal size="small" />
-        </div>
-        <InteractiveTerminal />
-      </section>
-
       {/* CONTACT */}
       <section id="contact" className="section-container">
         <div className="section-header reveal-up">
@@ -993,7 +869,7 @@ const App = () => {
       <div className="bottom-bar">
         <span className="hud-label text-muted-75">AKSHAYAVARDHAN S. &copy; 2026</span>
 
-        
+
         <span className="hud-label text-muted-75 social-links" style={{ display: 'flex', gap: '16px' }}>
           <a href="mailto:akshayavardhan20061418@gmail.com">EMAIL</a>
           <a href="https://github.com/akshaya14-byte" target="_blank" rel="noreferrer">GITHUB</a>
