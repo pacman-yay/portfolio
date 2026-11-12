@@ -7,13 +7,12 @@ import 'react-pdf/dist/Page/TextLayer.css';
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 import './index.css';
 
-const accents = ['#3b82f6'];
+const accents = ['#ffffff'];
 
 const missionsData = [
   {
     id: 'case-mgmt',
-    theme: 'theme-blue',
-    meta: 'BLUE TEAM // RBAC & MFA',
+    meta: '01 // RBAC & CASE MGMT',
     year: '2026',
     title: 'CASE MANAGEMENT DASHBOARD',
     shortDesc: 'A real-time crime case management dashboard with RBAC and MFA.',
@@ -29,8 +28,7 @@ const missionsData = [
   },
   {
     id: 'firewall',
-    theme: 'theme-blue',
-    meta: 'BLUE TEAM // PYTHON FIREWALL',
+    meta: '02 // PYTHON FIREWALL',
     year: '2025',
     title: 'PYTHON-BASED FIREWALL',
     shortDesc: 'A custom firewall using Python with rule-based IP/port filtering.',
@@ -46,8 +44,7 @@ const missionsData = [
   },
   {
     id: 'hive',
-    theme: 'theme-blue',
-    meta: 'BLUE TEAM // DDOS MONITORING',
+    meta: '03 // DDOS MONITORING',
     year: '2025',
     title: 'HIVE SECURITY DASHBOARD',
     shortDesc: 'Python dashboard with real-time traffic monitoring & DDoS detection.',
@@ -63,8 +60,7 @@ const missionsData = [
   },
   {
     id: 'moosik',
-    theme: 'theme-blue',
-    meta: 'SYSTEMS // ANDROID & KOTLIN',
+    meta: '04 // ANDROID STREAMING',
     year: '2026',
     title: 'MOOSIK STREAMING APP',
     shortDesc: 'High-performance music streaming & local player for Android.',
@@ -83,8 +79,7 @@ const missionsData = [
   },
   {
     id: 'zepto-osint',
-    theme: 'theme-red',
-    meta: 'RED TEAM // OSINT & PRIVACY',
+    meta: '05 // OSINT & PRIVACY',
     year: '2026',
     title: 'ZEPTO OSINT ASSESSMENT',
     shortDesc: 'Open-Source Intelligence investigation mapping digital footprint and regulatory risks.',
@@ -102,8 +97,7 @@ const missionsData = [
   },
   {
     id: 'apkphage',
-    theme: 'theme-purple',
-    meta: 'PURPLE TEAM // DEVSECOPS & MALWARE',
+    meta: '06 // MALWARE SANDBOX',
     year: '2026',
     title: 'APKPHAGE MALWARE SANDBOX',
     shortDesc: 'Containerized Android malware detonation sandbox with a secure dynamic analysis pipeline and DevSecOps CI/CD.',
@@ -120,8 +114,7 @@ const missionsData = [
   },
   {
     id: 'vapt-assessment',
-    theme: 'theme-red',
-    meta: 'RED TEAM // PENETRATION TESTING',
+    meta: '07 // INDEPENDENT VAPT',
     year: '2026',
     title: 'INDEPENDENT VAPT ASSESSMENT',
     shortDesc: 'Black-box VAPT engagement on a high-traffic public web platform following OWASP WSTG methodology.',
@@ -139,8 +132,7 @@ const missionsData = [
   },
   {
     id: 'home-lab',
-    theme: 'theme-blue',
-    meta: 'BLUE TEAM // HOMELAB & TAILSCALE',
+    meta: '08 // HOMELAB INFRA',
     year: '2026',
     title: 'HOME LAB SETUP',
     shortDesc: 'A home lab server repurposed from an old Lenovo laptop, managed via a custom React dashboard and connected securely via Tailscale and SSH.',
@@ -160,8 +152,7 @@ const missionsData = [
   },
   {
     id: 'recon-it',
-    theme: 'theme-red',
-    meta: 'RED TEAM // BASH RECON',
+    meta: '09 // RECON AUTOMATION',
     year: '2026',
     title: 'RECON-IT',
     shortDesc: 'A unified bash tool combining powerful reconnaissance utilities like whois, subfinder, dnsrecon, dnsdumpster, and httpx into a single automated workflow.',
@@ -344,8 +335,8 @@ const PaperModal = ({ paper, onClose }) => {
   if (!paper) return null;
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '1200px', height: '90vh', padding: 0, display: 'flex', flexDirection: 'column', background: 'rgba(10,10,10,0.98)', border: '1px solid var(--accent)' }}>
-        <div style={{ padding: '24px', borderBottom: '1px solid rgba(255,255,255,0.05)', position: 'relative' }}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '1200px', height: '90vh', padding: 0, display: 'flex', flexDirection: 'column', background: 'rgba(10,10,10,0.98)', border: '1px solid rgba(255,255,255,0.18)' }}>
+        <div style={{ padding: '24px', borderBottom: '1px solid rgba(255,255,255,0.08)', position: 'relative' }}>
           <button className="modal-close" onClick={onClose}><X size={20} /></button>
           <span className="hud-label text-accent">{paper.meta} // {paper.year}</span>
           <h2 className="card-title" style={{ marginTop: '12px', fontSize: '24px', paddingRight: '40px' }}>{paper.title}</h2>
@@ -451,7 +442,7 @@ const HoverScrambleText = ({ text }) => {
 
 const ThreatRating = () => {
   return (
-    <div className="card reveal-up is-visible" style={{ background: 'rgba(20,20,20,0.95)', border: '1px solid var(--accent)' }}>
+    <div className="card reveal-up is-visible">
       <div className="card-meta">
         <span className="text-accent blink">LIVE FEED</span>
         <span>THREAT RATING</span>
@@ -459,25 +450,25 @@ const ThreatRating = () => {
       <h2 className="card-title" style={{ fontSize: '20px', marginBottom: '24px' }}>TRAINING & CLEARANCE</h2>
 
       {/* PortSwigger */}
-      <div style={{ marginBottom: '24px', paddingBottom: '24px', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+      <div style={{ marginBottom: '24px', paddingBottom: '24px', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '8px', marginBottom: '12px' }}>
           <div>
-            <span className="hud-label" style={{ color: '#ff6600', display: 'block', marginBottom: '4px' }}>PORTSWIGGER ACADEMY</span>
-            <span style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)' }}>akshayavardhan20061418...</span>
+            <span className="hud-label" style={{ color: '#ffffff', display: 'block', marginBottom: '4px', letterSpacing: '1.2px' }}>PORTSWIGGER ACADEMY</span>
+            <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.45)', fontFamily: 'var(--font-mono)' }}>akshayavardhan20061418...</span>
           </div>
           <div style={{ textAlign: 'right' }}>
-            <span className="hud-label" style={{ color: '#fff', fontSize: '18px' }}>APPRENTICE</span>
+            <span className="hud-label" style={{ color: '#fff', fontSize: '16px', letterSpacing: '1px' }}>APPRENTICE</span>
           </div>
         </div>
 
         <div style={{ display: 'flex', gap: '8px' }}>
-          <div style={{ flex: 1, background: 'rgba(255,255,255,0.05)', padding: '8px', borderRadius: '4px' }}>
+          <div style={{ flex: 1, background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)', padding: '10px', borderRadius: '2px' }}>
             <div className="hud-label" style={{ fontSize: '10px', color: 'rgba(255,255,255,0.5)' }}>LABS SOLVED</div>
-            <div style={{ fontSize: '16px', fontFamily: 'var(--font-mono)' }}>50+</div>
+            <div style={{ fontSize: '16px', fontFamily: 'var(--font-mono)', color: '#ffffff' }}>50+</div>
           </div>
-          <div style={{ flex: 1, background: 'rgba(255,255,255,0.05)', padding: '8px', borderRadius: '4px' }}>
+          <div style={{ flex: 1, background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)', padding: '10px', borderRadius: '2px' }}>
             <div className="hud-label" style={{ fontSize: '10px', color: 'rgba(255,255,255,0.5)' }}>VULN CLASSES</div>
-            <div style={{ fontSize: '16px', fontFamily: 'var(--font-mono)' }}>12</div>
+            <div style={{ fontSize: '16px', fontFamily: 'var(--font-mono)', color: '#ffffff' }}>12</div>
           </div>
         </div>
       </div>
@@ -486,22 +477,22 @@ const ThreatRating = () => {
       <div style={{ paddingBottom: '12px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '8px', marginBottom: '12px' }}>
           <div>
-            <span className="hud-label" style={{ color: '#9fef00', display: 'block', marginBottom: '4px' }}>HACKTHEBOX</span>
-            <span style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)' }}>@kira1402</span>
+            <span className="hud-label" style={{ color: '#ffffff', display: 'block', marginBottom: '4px', letterSpacing: '1.2px' }}>HACKTHEBOX</span>
+            <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.45)', fontFamily: 'var(--font-mono)' }}>@kira1402</span>
           </div>
           <div style={{ textAlign: 'right' }}>
-            <span className="hud-label" style={{ color: '#fff', fontSize: '18px' }}>NOOB</span>
+            <span className="hud-label" style={{ color: '#fff', fontSize: '16px', letterSpacing: '1px' }}>NOOB</span>
           </div>
         </div>
 
         <div style={{ display: 'flex', gap: '8px' }}>
-          <div style={{ flex: 1, background: 'rgba(255,255,255,0.05)', padding: '8px', borderRadius: '4px' }}>
+          <div style={{ flex: 1, background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)', padding: '10px', borderRadius: '2px' }}>
             <div className="hud-label" style={{ fontSize: '10px', color: 'rgba(255,255,255,0.5)' }}>MACHINES OWNED</div>
-            <div style={{ fontSize: '16px', fontFamily: 'var(--font-mono)' }}>05</div>
+            <div style={{ fontSize: '16px', fontFamily: 'var(--font-mono)', color: '#ffffff' }}>05</div>
           </div>
-          <div style={{ flex: 1, background: 'rgba(255,255,255,0.05)', padding: '8px', borderRadius: '4px' }}>
+          <div style={{ flex: 1, background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)', padding: '10px', borderRadius: '2px' }}>
             <div className="hud-label" style={{ fontSize: '10px', color: 'rgba(255,255,255,0.5)' }}>RESPECT</div>
-            <div style={{ fontSize: '16px', fontFamily: 'var(--font-mono)' }}>0</div>
+            <div style={{ fontSize: '16px', fontFamily: 'var(--font-mono)', color: '#ffffff' }}>0</div>
           </div>
         </div>
       </div>
@@ -519,7 +510,7 @@ const ProfileSection = () => {
 
       <div className="grid-layout">
         {/* DOSSIER */}
-        <div className="card reveal-up is-visible" style={{ background: 'rgba(20,20,20,0.95)' }}>
+        <div className="card reveal-up is-visible">
           <div className="card-meta">
             <span>CLEARANCE: TOP SECRET</span>
             <span className="text-accent">ACTIVE</span>
@@ -533,13 +524,13 @@ const ProfileSection = () => {
           </p>
           <ul className="card-bullets" style={{ marginTop: '32px' }}>
             <li>
-              <span style={{ color: 'var(--accent-red)', fontWeight: 600 }}>Offensive Security (Red Team)</span>: Vulnerability Assessment & Pentesting (VAPT), OWASP Top 10, Web & API Exploitation
+              <span style={{ color: '#ffffff', fontWeight: 600 }}>Offensive Security</span>: Vulnerability Assessment & Pentesting (VAPT), OWASP Top 10, Web & API Exploitation
             </li>
             <li>
-              <span style={{ color: 'var(--accent-blue)', fontWeight: 600 }}>Defensive & DevSecOps (Blue Team)</span>: Automated Security CI/CD, Container Sandboxing, Vulnerability Scanning
+              <span style={{ color: '#ffffff', fontWeight: 600 }}>Defensive & DevSecOps</span>: Automated Security CI/CD, Container Sandboxing, Vulnerability Scanning
             </li>
             <li>
-              <span style={{ color: 'var(--accent-purple)', fontWeight: 600 }}>Full-Stack Systems Engineering</span>: React.js, Python Sockets, Kotlin & Native Android
+              <span style={{ color: '#ffffff', fontWeight: 600 }}>Full-Stack Systems Engineering</span>: React.js, Python Sockets, Kotlin & Native Android
             </li>
           </ul>
         </div>
@@ -565,8 +556,7 @@ const CyberDecal = ({ size = 'small', className = '' }) => {
 const SkillsStrip = () => {
   const tacticalArsenal = [
     {
-      sector: 'SECTOR 01 // RED TEAM',
-      theme: 'theme-red',
+      sector: '01 // OFFENSIVE OPS',
       status: 'OPERATIONAL',
       title: 'OFFENSIVE OPS & VAPT',
       desc: 'Web & API penetration testing, binary reverse engineering, vulnerability research, and active target reconnaissance.',
@@ -580,8 +570,7 @@ const SkillsStrip = () => {
       ]
     },
     {
-      sector: 'SECTOR 02 // BLUE TEAM',
-      theme: 'theme-blue',
+      sector: '02 // DEVSECOPS & DEFENSE',
       status: 'HARDENED',
       title: 'DEVSECOPS & DEFENSE',
       desc: 'Container sandboxing, automated pipeline security gates, vulnerability scanning, and zero-trust mesh networking.',
@@ -595,8 +584,7 @@ const SkillsStrip = () => {
       ]
     },
     {
-      sector: 'SECTOR 03 // SYSTEMS',
-      theme: 'theme-purple',
+      sector: '03 // SYSTEMS & CODE',
       status: 'PRODUCTION',
       title: 'ENGINEERING & CODE',
       desc: 'Full-stack mission dashboards, low-level network programming, and high-performance native Android applications.',
@@ -614,7 +602,7 @@ const SkillsStrip = () => {
   return (
     <div className="arsenal-grid">
       {tacticalArsenal.map((category, idx) => (
-        <div key={category.sector} className={`arsenal-card ${category.theme} reveal-up ${idx > 0 ? `delay-${idx * 100}` : ''}`}>
+        <div key={category.sector} className={`arsenal-card reveal-up ${idx > 0 ? `delay-${idx * 100}` : ''}`}>
           <div className="card-meta">
             <span>{category.sector}</span>
             <span className="arsenal-badge-status">
@@ -705,10 +693,10 @@ const ContactForm = () => {
         style={{ padding: '12px 16px', background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(255,255,255,0.1)', color: '#fff', outline: 'none', fontFamily: 'var(--font-mono)', resize: 'vertical' }}
       />
       <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-        <button type="submit" className="btn-primary hud-label btn-dual" style={{ border: 'none', cursor: 'pointer', padding: '12px 24px', letterSpacing: '2px' }}>
+        <button type="submit" className="btn-nothing-white" style={{ border: 'none', cursor: 'pointer', padding: '12px 24px', letterSpacing: '2px' }}>
           [ SEND PAYLOAD ]
         </button>
-        {status && <span className="hud-label" style={{ color: status.includes('SUCCESS') ? '#00ffaa' : status.includes('TRANSMITTING') ? 'var(--accent)' : '#ff0055' }}>{status}</span>}
+        {status && <span className="hud-label" style={{ color: '#ffffff' }}>{status}</span>}
       </div>
     </form>
   );
@@ -718,7 +706,7 @@ const App = () => {
   const [accentIdx, setAccentIdx] = useState(0);
   const [selectedMission, setSelectedMission] = useState(null);
   const [selectedPaper, setSelectedPaper] = useState(null);
-  const accents = ['#3b82f6'];
+  const accents = ['#ffffff'];
 
   useEffect(() => {
     if ('scrollRestoration' in window.history) {
@@ -768,7 +756,7 @@ const App = () => {
         </nav>
 
         <div className="header-right" style={{ position: 'absolute', right: '24px', display: 'flex', gap: '12px', alignItems: 'center' }}>
-          <a href="/resume.pdf" download="resume.pdf" className="island hud-label hide-mobile" style={{ color: 'var(--accent)', borderColor: 'var(--accent)', textDecoration: 'none', transition: 'all 0.2s', cursor: 'pointer' }}>
+          <a href="/resume.pdf" download="resume.pdf" className="island hud-label hide-mobile" style={{ color: '#ffffff', borderColor: 'rgba(255,255,255,0.25)', textDecoration: 'none', transition: 'all 0.2s', cursor: 'pointer' }}>
             EXTRACT DOSSIER
           </a>
         </div>
@@ -779,9 +767,9 @@ const App = () => {
         <div style={{ paddingTop: '20px', zIndex: 2 }}>
           <p className="hero-subtitle reveal-up is-visible">CYBER SECURITY UNDERGRADUATE</p>
           <p className="hud-label text-muted-75 reveal-up delay-100 is-visible" style={{ letterSpacing: '2px' }}>
-            <span style={{ color: 'var(--accent-red)', fontWeight: 600 }}>RED TEAM (VAPT)</span>
+            <span style={{ color: '#ffffff', fontWeight: 600 }}>OFFENSIVE (VAPT)</span>
             <span style={{ opacity: 0.4, margin: '0 8px' }}>·</span>
-            <span style={{ color: 'var(--accent-blue)', fontWeight: 600 }}>BLUE TEAM (DEVSECOPS)</span>
+            <span style={{ color: '#ffffff', fontWeight: 600 }}>DEFENSIVE (DEVSECOPS)</span>
             <span style={{ opacity: 0.4, margin: '0 8px' }}>·</span>
             <span>SYSTEMS ENGINEERING</span>
           </p>
@@ -797,13 +785,13 @@ const App = () => {
               </span>
             </h1>
             <div className="hero-tags reveal-up delay-300 is-visible">
-              <span className="hud-label hero-tag" style={{ borderColor: 'rgba(255, 51, 102, 0.4)' }}>
-                <span className="dot" style={{ background: 'var(--accent-red)', boxShadow: '0 0 8px var(--accent-red)' }}></span>
-                <span style={{ color: 'var(--accent-red)' }}>OFFENSIVE (RED)</span>
+              <span className="hud-label hero-tag">
+                <span className="dot" style={{ background: '#ffffff', boxShadow: '0 0 8px #ffffff' }}></span>
+                <span style={{ color: '#ffffff' }}>OFFENSIVE SECURITY</span>
               </span>
-              <span className="hud-label hero-tag" style={{ borderColor: 'rgba(59, 130, 246, 0.4)' }}>
-                <span className="dot" style={{ background: 'var(--accent-blue)', boxShadow: '0 0 8px var(--accent-blue)' }}></span>
-                <span style={{ color: 'var(--accent-blue)' }}>DEFENSIVE (BLUE)</span>
+              <span className="hud-label hero-tag">
+                <span className="dot" style={{ background: 'rgba(255, 255, 255, 0.6)', boxShadow: '0 0 8px rgba(255, 255, 255, 0.3)' }}></span>
+                <span style={{ color: '#ffffff' }}>DEVSECOPS & INFRA</span>
               </span>
               <span className="hud-label hero-tag"><span className="dot"></span><ScrambleText text="CHENNAI, INDIA" delay={500} /></span>
               <span className="hud-label hero-tag"><span className="dot"></span><ScrambleText text="B.E CYBER SECURITY" delay={900} /></span>
@@ -836,7 +824,7 @@ const App = () => {
 
         <div className="grid-layout">
           {missionsData.map((mission, idx) => (
-            <div key={mission.id} className={`card reveal-up ${mission.theme || ''} ${idx > 0 ? 'delay-' + (idx * 100) : ''}`}>
+            <div key={mission.id} className={`card reveal-up ${idx > 0 ? 'delay-' + (idx * 100) : ''}`}>
               <div className="card-meta">
                 <span>{mission.meta}</span>
                 <span>{mission.year}</span>
@@ -861,10 +849,10 @@ const App = () => {
         </div>
 
         <div className="grid-layout">
-          {/* Exp 1 - Blue Team */}
-          <div className="card theme-blue reveal-up">
+          {/* Exp 1 */}
+          <div className="card reveal-up">
             <div className="card-meta">
-              <span>BLUE TEAM // TAMIL NADU CYBER CRIME WING</span>
+              <span>01 // TAMIL NADU CYBER CRIME WING</span>
               <span>JUN 2026 — JUL 2026</span>
             </div>
             <h3 className="card-title" style={{ fontSize: '24px' }}>CYBERSECURITY INTERN</h3>
@@ -877,10 +865,10 @@ const App = () => {
             </ul>
           </div>
 
-          {/* Exp 2 - Red Team */}
-          <div className="card theme-red reveal-up delay-100">
+          {/* Exp 2 */}
+          <div className="card reveal-up delay-100">
             <div className="card-meta">
-              <span>RED TEAM // ASCIZEN ACADEMY</span>
+              <span>02 // ASCIZEN ACADEMY</span>
               <span>MAR 2026 — MAY 2026</span>
             </div>
             <h3 className="card-title" style={{ fontSize: '24px' }}>VAPT INTERN</h3>
@@ -902,9 +890,9 @@ const App = () => {
 
         <div className="grid-layout">
           {researchData.map((paper, idx) => (
-            <div key={paper.id} className={`card theme-purple reveal-up ${idx > 0 ? 'delay-' + (idx * 100) : ''}`}>
+            <div key={paper.id} className={`card reveal-up ${idx > 0 ? 'delay-' + (idx * 100) : ''}`}>
               <div className="card-meta">
-                <span>{paper.meta}</span>
+                <span>01 // ACTIVE BIOMETRIC AUTHENTICATION</span>
                 <span>{paper.year}</span>
               </div>
               <h3 className="card-title">{paper.title}</h3>
@@ -933,8 +921,8 @@ const App = () => {
               Currently open for new opportunities across Offensive Security (VAPT) and Defensive DevSecOps. Whether you have an engagement, project proposal, or want to collaborate, my inbox is open.
             </p>
             <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-              <a href="https://github.com/akshaya14-byte" target="_blank" rel="noreferrer" className="btn-primary hud-label" style={{ clipPath: 'none', borderRadius: '4px', background: 'transparent', border: '1px solid var(--accent-blue)', color: 'var(--accent-blue)' }}>GITHUB <ArrowUpRight size={16} /></a>
-              <a href="https://www.linkedin.com/in/akshayavardhan-s" target="_blank" rel="noreferrer" className="btn-primary hud-label" style={{ clipPath: 'none', borderRadius: '4px', background: 'transparent', border: '1px solid var(--accent-red)', color: 'var(--accent-red)' }}>LINKEDIN <ArrowUpRight size={16} /></a>
+              <a href="https://github.com/akshaya14-byte" target="_blank" rel="noreferrer" className="btn-nothing-outline hud-label" style={{ padding: '10px 20px', borderRadius: '2px', display: 'inline-flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>GITHUB <ArrowUpRight size={16} /></a>
+              <a href="https://www.linkedin.com/in/akshayavardhan-s" target="_blank" rel="noreferrer" className="btn-nothing-outline hud-label" style={{ padding: '10px 20px', borderRadius: '2px', display: 'inline-flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>LINKEDIN <ArrowUpRight size={16} /></a>
             </div>
           </div>
           <div className="card reveal-up delay-100">

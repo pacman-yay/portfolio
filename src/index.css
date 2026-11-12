@@ -1,13 +1,15 @@
 :root {
-  --ink: #0e0e0e;
-  --muted: #ece9e4;
-  --muted-rgb: 236, 233, 228;
-  --accent: #3b82f6;
-  --accent-blue: #3b82f6;
-  --accent-red: #ff3366;
-  --accent-purple: #a855f7;
+  --ink: #000000;
+  --bg-surface: #0a0a0a;
+  --bg-card: rgba(16, 16, 16, 0.85);
+  --muted: #f0f0f0;
+  --muted-rgb: 240, 240, 240;
+  --text-dim: #888888;
+  --accent: #ffffff;
+  --border-subtle: rgba(255, 255, 255, 0.12);
+  --border-hover: #ffffff;
   --ease-soft: cubic-bezier(0.16, 1, 0.3, 1);
-  --dur-hover: 0.3s;
+  --dur-hover: 0.25s;
   --font-mono: 'JetBrains Mono', monospace;
 }
 
@@ -31,8 +33,8 @@ html, body {
 }
 
 ::selection {
-  background: var(--accent);
-  color: var(--ink);
+  background: #ffffff;
+  color: #000000;
 }
 
 a {
@@ -268,7 +270,7 @@ header {
 .glitch:hover {
   animation: glitch-skew 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
   color: var(--accent);
-  text-shadow: 2px 0px 0px rgba(255,0,0,0.8), -2px 0px 0px rgba(0,255,0,0.8);
+  text-shadow: 2px 0px 0px rgba(255, 255, 255, 0.7), -2px 0px 0px rgba(128, 128, 128, 0.7);
 }
 
 @keyframes glitch-skew {
@@ -280,25 +282,16 @@ header {
   100% { transform: translate(0) }
 }
 
-/* Cyber Decal Graphic (Dual Red & Blue Decals) */
+/* Nothing Monochrome Decal Graphic */
 .cyber-decal {
   display: flex;
   gap: 8px;
 }
 .cyber-bar {
-  background-color: var(--accent);
+  background-color: #ffffff;
   transform: skewX(-25deg);
   transition: all 0.3s ease;
-}
-.cyber-decal .cyber-bar:nth-child(1),
-.cyber-decal .cyber-bar:nth-child(2) {
-  background-color: var(--accent-red);
-  box-shadow: 0 0 10px rgba(255, 51, 102, 0.45);
-}
-.cyber-decal .cyber-bar:nth-child(3),
-.cyber-decal .cyber-bar:nth-child(4) {
-  background-color: var(--accent-blue);
-  box-shadow: 0 0 10px rgba(59, 130, 246, 0.45);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
 }
 .cyber-decal.size-small .cyber-bar {
   width: 12px;
@@ -530,7 +523,7 @@ header {
   opacity: 0;
   pointer-events: none;
   transition: all 0.2s ease;
-  box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
 }
 
 .confidential-btn:hover::after {
@@ -750,19 +743,19 @@ header {
   text-transform: uppercase;
 }
 
-.severity-high { color: #ff4444; font-weight: bold; }
-.severity-medium { color: #ffaa00; font-weight: bold; }
-.severity-low { color: #00ffcc; font-weight: bold; }
-.severity-critical { color: #ff0000; font-weight: bold; text-shadow: 0 0 8px red; }
+.severity-high { color: #ffffff; font-weight: bold; }
+.severity-medium { color: #cccccc; font-weight: bold; }
+.severity-low { color: #888888; font-weight: bold; }
+.severity-critical { color: #ffffff; font-weight: bold; letter-spacing: 1px; }
 
 .terminal-block {
-  background: #000;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
   padding: 16px;
   font-family: var(--font-mono);
   font-size: 12px;
-  color: #00ffcc;
+  color: #f0f0f0;
   white-space: pre-wrap;
   word-wrap: break-word;
   margin-bottom: 24px;
@@ -789,7 +782,7 @@ header {
 }
 
 /* ==========================================================================
-   TECHNICAL ARSENAL (TACTICAL MATRIX)
+   TECHNICAL ARSENAL (NOTHING MONOCHROME MATRIX)
    ========================================================================== */
 
 .arsenal-grid {
@@ -806,21 +799,21 @@ header {
 }
 
 .arsenal-card {
-  background: rgba(14, 14, 14, 0.7);
-  border: 1px solid rgba(var(--muted-rgb), 0.14);
+  background: rgba(14, 14, 14, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   padding: 32px 28px;
   border-radius: 4px;
   position: relative;
   display: flex;
   flex-direction: column;
-  transition: border-color var(--dur-hover), transform var(--dur-hover), box-shadow var(--dur-hover);
-  backdrop-filter: blur(12px);
+  transition: all var(--dur-hover) var(--ease-soft);
+  backdrop-filter: blur(14px);
 }
 
 .arsenal-card:hover {
-  border-color: var(--accent);
+  border-color: #ffffff !important;
   transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.7), 0 0 20px rgba(59, 130, 246, 0.12);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.85), 0 0 25px rgba(255, 255, 255, 0.15) !important;
 }
 
 .arsenal-badge-status {
@@ -829,15 +822,16 @@ header {
   gap: 6px;
   font-family: var(--font-mono);
   font-size: 11px;
-  letter-spacing: 1.2px;
+  letter-spacing: 1.5px;
+  color: #ffffff;
 }
 
 .arsenal-badge-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 8px var(--accent);
+  background: #ffffff;
+  box-shadow: 0 0 8px #ffffff;
 }
 
 .arsenal-list {
@@ -854,15 +848,15 @@ header {
   gap: 12px;
   padding: 10px 14px;
   background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 2px;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   font-family: var(--font-mono);
 }
 
 .arsenal-item:hover {
-  background: rgba(59, 130, 246, 0.08);
-  border-color: rgba(59, 130, 246, 0.4);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.35);
   transform: translateX(4px);
 }
 
@@ -877,7 +871,7 @@ header {
 }
 
 .arsenal-item-arrow {
-  color: var(--accent);
+  color: #ffffff;
   font-size: 13px;
   font-weight: 700;
   transition: transform 0.2s ease;
@@ -898,7 +892,7 @@ header {
 }
 
 .arsenal-item:hover .arsenal-item-role {
-  color: var(--accent);
+  color: #ffffff;
 }
 
 @media (max-width: 768px) {
@@ -917,136 +911,72 @@ header {
 }
 
 /* ==========================================================================
-   RED & BLUE THEME INTEGRATION (OFFENSIVE VS DEFENSIVE)
+   NOTHING MONOCHROME DESIGN SYSTEM (BLACK, WHITE, GREY)
    ========================================================================== */
 
-/* Red Team Theme */
-.arsenal-card.theme-red,
-.card.theme-red {
-  border-color: rgba(255, 51, 102, 0.22);
-}
-.arsenal-card.theme-red:hover,
-.card.theme-red:hover {
-  border-color: var(--accent-red) !important;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.7), 0 0 25px rgba(255, 51, 102, 0.25) !important;
-}
-.arsenal-card.theme-red .arsenal-badge-status {
-  color: var(--accent-red);
-}
-.arsenal-card.theme-red .arsenal-badge-dot {
-  background: var(--accent-red);
-  box-shadow: 0 0 8px var(--accent-red);
-}
-.arsenal-card.theme-red .arsenal-item:hover {
-  background: rgba(255, 51, 102, 0.08);
-  border-color: rgba(255, 51, 102, 0.4);
-}
-.arsenal-card.theme-red .arsenal-item-arrow {
-  color: var(--accent-red);
-}
-.arsenal-card.theme-red .arsenal-item:hover .arsenal-item-role {
-  color: var(--accent-red);
-}
-.card.theme-red .card-meta span:first-child {
-  color: var(--accent-red);
-  font-weight: 600;
-}
-.card.theme-red .modal-pill-btn:hover {
-  border-color: var(--accent-red);
-  color: var(--accent-red);
-  box-shadow: 0 0 14px rgba(255, 51, 102, 0.35);
+/* Universal Card Styling */
+.card {
+  background: rgba(14, 14, 14, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 38px 32px;
+  transition: border-color var(--dur-hover), box-shadow var(--dur-hover), transform var(--dur-hover);
+  position: relative;
+  backdrop-filter: blur(14px);
 }
 
-/* Blue Team Theme */
-.arsenal-card.theme-blue,
-.card.theme-blue {
-  border-color: rgba(59, 130, 246, 0.22);
-}
-.arsenal-card.theme-blue:hover,
-.card.theme-blue:hover {
-  border-color: var(--accent-blue) !important;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.7), 0 0 25px rgba(59, 130, 246, 0.25) !important;
-}
-.arsenal-card.theme-blue .arsenal-badge-status {
-  color: var(--accent-blue);
-}
-.arsenal-card.theme-blue .arsenal-badge-dot {
-  background: var(--accent-blue);
-  box-shadow: 0 0 8px var(--accent-blue);
-}
-.arsenal-card.theme-blue .arsenal-item:hover {
-  background: rgba(59, 130, 246, 0.08);
-  border-color: rgba(59, 130, 246, 0.4);
-}
-.arsenal-card.theme-blue .arsenal-item-arrow {
-  color: var(--accent-blue);
-}
-.arsenal-card.theme-blue .arsenal-item:hover .arsenal-item-role {
-  color: var(--accent-blue);
-}
-.card.theme-blue .card-meta span:first-child {
-  color: var(--accent-blue);
-  font-weight: 600;
-}
-.card.theme-blue .modal-pill-btn:hover {
-  border-color: var(--accent-blue);
-  color: var(--accent-blue);
-  box-shadow: 0 0 14px rgba(59, 130, 246, 0.35);
-}
-
-/* Purple / Fusion Theme */
-.arsenal-card.theme-purple,
-.card.theme-purple {
-  border-color: rgba(168, 85, 247, 0.22);
-}
-.arsenal-card.theme-purple:hover,
-.card.theme-purple:hover {
-  border-color: var(--accent-purple) !important;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.7), 0 0 25px rgba(168, 85, 247, 0.25) !important;
-}
-.arsenal-card.theme-purple .arsenal-badge-status {
-  color: var(--accent-purple);
-}
-.arsenal-card.theme-purple .arsenal-badge-dot {
-  background: var(--accent-purple);
-  box-shadow: 0 0 8px var(--accent-purple);
-}
-.arsenal-card.theme-purple .arsenal-item:hover {
-  background: rgba(168, 85, 247, 0.08);
-  border-color: rgba(168, 85, 247, 0.4);
-}
-.arsenal-card.theme-purple .arsenal-item-arrow {
-  color: var(--accent-purple);
-}
-.arsenal-card.theme-purple .arsenal-item:hover .arsenal-item-role {
-  color: var(--accent-purple);
-}
-.card.theme-purple .card-meta span:first-child {
-  color: var(--accent-purple);
-  font-weight: 600;
-}
-.card.theme-purple .modal-pill-btn:hover {
-  border-color: var(--accent-purple);
-  color: var(--accent-purple);
-  box-shadow: 0 0 14px rgba(168, 85, 247, 0.35);
-}
-
-/* Utilities */
-.text-accent-red { color: var(--accent-red) !important; }
-.text-accent-blue { color: var(--accent-blue) !important; }
-.text-accent-purple { color: var(--accent-purple) !important; }
-
-.btn-dual {
-  background: linear-gradient(135deg, var(--accent-red), var(--accent-blue)) !important;
-  color: #fff !important;
-  border: none !important;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  font-weight: 600;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-}
-.btn-dual:hover {
-  box-shadow: 0 0 20px rgba(255, 51, 102, 0.4), 0 0 25px rgba(59, 130, 246, 0.4) !important;
+.card:hover {
+  border-color: #ffffff !important;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.85), 0 0 25px rgba(255, 255, 255, 0.15) !important;
   transform: translateY(-2px);
 }
+
+.card-meta span:first-child {
+  color: #ffffff;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.modal-pill-btn {
+  font-family: var(--font-mono);
+  letter-spacing: 1px;
+}
+
+.modal-pill-btn:hover {
+  border-color: #ffffff;
+  color: #ffffff;
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Nothing Monochrome Buttons */
+.btn-nothing-white {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid #ffffff !important;
+  font-family: var(--font-mono) !important;
+  letter-spacing: 2px;
+  transition: all 0.25s ease !important;
+  font-weight: 700;
+}
+
+.btn-nothing-white:hover {
+  background: #f0f0f0 !important;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.45) !important;
+  transform: translateY(-2px);
+}
+
+.btn-nothing-outline {
+  background: transparent !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  transition: all 0.25s ease !important;
+}
+
+.btn-nothing-outline:hover {
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.25) !important;
+}
+
 
 
